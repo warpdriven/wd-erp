@@ -834,6 +834,8 @@
             <t t-set="dependencies" t-valuef="option_header_brand_none"/>
         </t>
     </div>
+    <!-- TODO adapt in master, the logo image options related to type and -->
+    <!-- height are moved back in the navbar section in JS -->
     <div data-selector="#wrapwrap > header nav.navbar .navbar-brand img" data-no-check="true">
         <t t-call="website.snippet_options_header_brand">
             <t t-set="label">Type</t>
@@ -1219,6 +1221,7 @@
     <div data-js="WebsiteAnimate"
          data-selector=".o_animable, section .row > div, img, .fa, .btn, .o_animated_text"
          data-exclude=".o_not-animable, .s_col_no_resize.row > div, .s_col_no_resize">
+        <!-- TODO adapt in master, this is patched in JS to simulate a data-dependencies -->
         <we-select string="Animate" data-is-animation-type-selection="true">
             <we-button data-select-class="" data-name="no_animation_opt">No Animation</we-button>
             <we-divider/>
