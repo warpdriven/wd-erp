@@ -23,8 +23,8 @@
 # david danilov, 2021
 # Jonathan Spier, 2022
 # Netta Waizer, 2022
-# Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # Roy Sayag, 2022
+# Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # NoaFarkash, 2022
 # 
 msgid ""
@@ -5296,7 +5296,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"פרסם את ספריית החברים / הארגונים שלך באופן ציבורי.\n"
+"פרסם את ספריית המנויים/ הארגונים שלך באופן ציבורי.\n"
 "    "
 
 #. module: base
@@ -8375,7 +8375,7 @@ msgstr ""
 msgid ""
 "A partner with the same <span><span class=\"o_vat_label\">Tax "
 "ID</span></span> already exists ("
-msgstr ""
+msgstr "ספק עם אותו <span><span class=\"o_vat_label\">ח\"פ</span></span> כבר קיים ("
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_base_partner_merge_automatic_wizard__exclude_contact
@@ -10349,7 +10349,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_stock_barcode_picking_batch
 msgid "Barcode for Batch Transfer"
-msgstr ""
+msgstr "ברקוד להעברת אצווה"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_barcodes_mobile
@@ -12081,7 +12081,7 @@ msgstr "תוארי כבוד של אנשי קשר"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "Contact image"
-msgstr ""
+msgstr "תמונת איש קשר"
 
 #. module: base
 #: code:addons/base/models/ir_model.py:0 code:addons/base/models/ir_rule.py:0
@@ -17250,7 +17250,7 @@ msgstr "תצוגה שעברה בירושה"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_view_form
 msgid "Inherited Views"
-msgstr "ירש צפיות"
+msgstr "תצוגות יורשות"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model__inherited_model_ids
@@ -19364,7 +19364,7 @@ msgstr "מאיוט"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_membership
 msgid "Members"
-msgstr "חברים"
+msgstr "מנויים"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_note_pad
@@ -19877,8 +19877,8 @@ msgstr ""
 "הסרת מודול אינה תמיד עקבית ולעיתים עלולה להוביל לבעיות,\n"
 "ייתכן שחלק מהנתונים יימחקו, מסד הנתונים עלול להישאר במצב לא יציב,\n"
 "השרת עלול לקרוס וכו'. למרות שזה נדיר, אנו ממליצים לבצע בדיקת\n"
-"הליך הסרת ההתקנה על מסד נתונים כפול כדי להבטיח\n"
-"זה עובד ואז עושה את זה במסד הנתונים הייצור שלך."
+"הליך הסרת התקנה על מסד נתונים כפול כדי להבטיח\n"
+"שההליך עובד ואז בצע את ההליך במסד הנתונים שלך (בProduction)."
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_module_category__module_ids
@@ -21830,7 +21830,7 @@ msgstr "משרות באינטרנט"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_membership
 msgid "Online Members Directory"
-msgstr "מדריך חברים מחוברים"
+msgstr "מדריך מנויים מחוברים"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_form_project
@@ -23562,7 +23562,7 @@ msgstr "פרסם את הפניות הלקוחות שלך"
 #. module: base
 #: model:ir.module.module,summary:base.module_website_membership
 msgid "Publish your members directory"
-msgstr "פרסם את ספריית החברים שלך"
+msgstr "פרסם את ספריית המנויים שלך"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_crm_partner_assign

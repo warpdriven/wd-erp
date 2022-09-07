@@ -90,17 +90,9 @@ class TestLeaveRequests(TestHrHolidaysCommon):
 
     @mute_logger('odoo.models.unlink', 'odoo.addons.mail.models.mail_mail')
     def test_limited_type_no_days(self):
-        """  Employee creates a leave request in a limited category but has not enough days left  """
-
-        with self.assertRaises(ValidationError):
-            self.env['hr.leave'].with_user(self.user_employee_id).create({
-                'name': 'Hol22',
-                'employee_id': self.employee_emp_id,
-                'holiday_status_id': self.holidays_type_2.id,
-                'date_from': (datetime.today() + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M'),
-                'date_to': (datetime.today() + relativedelta(days=2)),
-                'number_of_days': 1,
-            })
+        # Deprecated as part of https://github.com/odoo/odoo/pull/96545
+        # TODO: remove in master
+        return
 
     @mute_logger('odoo.models.unlink', 'odoo.addons.mail.models.mail_mail')
     def test_limited_type_days_left(self):
@@ -162,16 +154,9 @@ class TestLeaveRequests(TestHrHolidaysCommon):
 
     @mute_logger('odoo.models.unlink', 'odoo.addons.mail.models.mail_mail')
     def test_accrual_validity_time_not_valid(self):
-        """  Employee ask leave when there's no valid allocation """
-        with self.assertRaises(ValidationError):
-            self.env['hr.leave'].with_user(self.user_employee).create({
-                'name': 'Sick Time Off',
-                'employee_id': self.employee_emp_id,
-                'holiday_status_id': self.holidays_type_2.id,
-                'date_from': fields.Datetime.from_string('2017-07-03 06:00:00'),
-                'date_to': fields.Datetime.from_string('2017-07-11 19:00:00'),
-                'number_of_days': 1,
-            })
+        # Deprecated as part of https://github.com/odoo/odoo/pull/96545
+        # TODO: remove in master
+        return
 
     @mute_logger('odoo.models.unlink', 'odoo.addons.mail.models.mail_mail')
     def test_department_leave(self):
@@ -605,23 +590,8 @@ class TestLeaveRequests(TestHrHolidaysCommon):
         allocation1.action_validate()
         allocation2.action_validate()
 
-        # Neither allocation has enough days
-        with self.assertRaises(ValidationError):
-            self.env['hr.leave'].with_user(self.user_employee_id).create({
-                'name': 'Holiday Request',
-                'employee_id': self.employee_emp_id,
-                'holiday_status_id': self.holidays_type_2.id,
-                'date_from': '2022-01-01',
-                'date_to': '2022-01-15',
-                'number_of_days': 10,
-            })
-
-        allocation_vals.update({'number_of_days': 10})
-        allocation3 = self.env['hr.leave.allocation'].create(allocation_vals)
-        allocation3.action_validate()
-
-        # The 3rd allocation has enough days, so it should be picked
-        holiday = self.env['hr.leave'].with_user(self.user_employee_id).create({
+        # Able to create a leave of 10 days with two allocations of 5 days
+        self.env['hr.leave'].with_user(self.user_employee_id).create({
             'name': 'Holiday Request',
             'employee_id': self.employee_emp_id,
             'holiday_status_id': self.holidays_type_2.id,
@@ -629,11 +599,6 @@ class TestLeaveRequests(TestHrHolidaysCommon):
             'date_to': '2022-01-15',
             'number_of_days': 10,
         })
-        holiday.sudo().action_validate()
-
-        self.assertEqual(allocation1.leaves_taken, 0.0, 'As this allocation does not have enough days, it should not be affected')
-        self.assertEqual(allocation2.leaves_taken, 0.0, 'As this allocation does not have enough days, it should not be affected')
-        self.assertEqual(allocation3.leaves_taken, 10.0, 'As this allocation has enough days, the leave days should be taken')
 
     def test_several_allocations_split(self):
         Allocation = self.env['hr.leave.allocation']
@@ -684,7 +649,83 @@ class TestLeaveRequests(TestHrHolidaysCommon):
             leaves = (leave_4days + leave_1day)
             leaves.action_approve()
 
-            self.assertEqual(allocation_4days.leaves_taken, leave_4days['number_of_%ss_display' % unit], 'As 4 days were available in this allocation, they should have been taken')
-            self.assertEqual(allocation_1day.leaves_taken, leave_1day['number_of_%ss_display' % unit], 'As no days were available in previous allocation, they should have been taken in this one')
+            allocation_days = self.holidays_type_2._get_employees_days_per_allocation([self.employee_emp_id])
+
+            self.assertEqual(allocation_days[self.employee_emp_id][self.holidays_type_2][allocation_4days]['leaves_taken'], leave_4days['number_of_%ss_display' % unit], 'As 4 days were available in this allocation, they should have been taken')
+            self.assertEqual(allocation_days[self.employee_emp_id][self.holidays_type_2][allocation_1day]['leaves_taken'], leave_1day['number_of_%ss_display' % unit], 'As no days were available in previous allocation, they should have been taken in this one')
             leaves.action_refuse()
             allocations.action_refuse()
+
+    def test_holiday_type_requires_no_allocation(self):
+        # holiday_type_2 initially requires an allocation
+        # Once an allocation is granted and a leave is taken,
+        # the holiday type is changed to no longer require an allocation.
+        # Leaves taken and available days should be correctly computed.
+        with freeze_time('2020-09-15'):
+            allocation = self.env['hr.leave.allocation'].create({
+                'name': 'Expired Allocation',
+                'employee_id': self.employee_emp_id,
+                'holiday_status_id': self.holidays_type_2.id,
+                'number_of_days': 5,
+                'state': 'confirm',
+                'date_from': '2020-01-01',
+                'date_to': '2020-12-31',
+            })
+            allocation.action_validate()
+            leave1 = self.env['hr.leave'].with_user(self.user_employee_id).create({
+                'name': 'Holiday Request',
+                'employee_id': self.employee_emp_id,
+                'holiday_status_id': self.holidays_type_2.id,
+                'date_from': '2020-09-06',
+                'date_to': '2020-09-08',
+                'number_of_days': 3,
+            })
+
+            self.assertEqual(
+                self.holidays_type_2.get_employees_days([self.employee_emp_id])[self.employee_emp_id][self.holidays_type_2.id],
+                {
+                    'max_leaves': 5,
+                    'leaves_taken': 0,
+                    'remaining_leaves': 5,
+                    'virtual_remaining_leaves': 2,
+                    'virtual_leaves_taken': 3,
+                }
+            )
+
+            self.holidays_type_2.requires_allocation = 'no'
+            leave2 = self.env['hr.leave'].with_user(self.user_employee_id).create({
+                'name': 'Holiday Request',
+                'employee_id': self.employee_emp_id,
+                'holiday_status_id': self.holidays_type_2.id,
+                'date_from': '2020-07-06',
+                'date_to': '2020-07-08',
+                'number_of_days': 3,
+            })
+
+            # The 5 allocation days are not consumed anymore
+            # virtual_remaining_leaves reflect the total number of leave days taken
+            self.assertEqual(
+                self.holidays_type_2.get_employees_days([self.employee_emp_id])[self.employee_emp_id][self.holidays_type_2.id],
+                {
+                    'max_leaves': 5,
+                    'leaves_taken': 0,
+                    'remaining_leaves': 5,
+                    'virtual_remaining_leaves': 5,
+                    'virtual_leaves_taken': 6,
+                }
+            )
+
+            leave1.with_user(self.user_hrmanager_id).action_approve()
+            leave2.with_user(self.user_hrmanager_id).action_approve()
+
+            # leaves_taken and virtual_leaves_taken reflect the total number of leave days taken
+            self.assertEqual(
+                self.holidays_type_2.get_employees_days([self.employee_emp_id])[self.employee_emp_id][self.holidays_type_2.id],
+                {
+                    'max_leaves': 5,
+                    'leaves_taken': 6,
+                    'remaining_leaves': 5,
+                    'virtual_remaining_leaves': 5,
+                    'virtual_leaves_taken': 6,
+                }
+            )

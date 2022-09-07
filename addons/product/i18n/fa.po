@@ -520,7 +520,7 @@ msgstr "دسته‌بندی‌های فرزند"
 #. module: product
 #: model:ir.actions.act_window,name:product.action_open_label_layout
 msgid "Choose Labels Layout"
-msgstr ""
+msgstr "انتخاب چیدمان لیبل ها"
 
 #. module: product
 #: model:ir.model,name:product.model_product_label_layout
@@ -1640,6 +1640,14 @@ msgid "Next Activity Type"
 msgstr "نوع فعالیت بعدی"
 
 #. module: product
+#: code:addons/product/wizard/product_label_layout.py:0
+#, python-format
+msgid ""
+"No product to print, if the product is archived please unarchive it before "
+"printing its label."
+msgstr ""
+
+#. module: product
 #: model_terms:ir.actions.act_window,help:product.product_supplierinfo_type_action
 msgid "No vendor pricelist found"
 msgstr "لیست قیمت فروشنده ای پیدا نشد"
@@ -2047,7 +2055,7 @@ msgstr "برچسب محصول (PDF)"
 #: model:ir.model,name:product.model_report_product_report_producttemplatelabel
 #: model:ir.model,name:product.model_report_product_report_producttemplatelabel_dymo
 msgid "Product Label Report"
-msgstr ""
+msgstr "گزارش لیبل محصول"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
@@ -2110,7 +2118,7 @@ msgstr ""
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__product_tmpl_ids
 msgid "Product Tmpl"
-msgstr ""
+msgstr "قالب محصول"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__product_tooltip
@@ -2157,7 +2165,7 @@ msgstr "گونه های محصول"
 #: code:addons/product/report/product_label_report.py:0
 #, python-format
 msgid "Product model not defined, Please contact your administrator."
-msgstr ""
+msgstr "مدل محصول تعریف نشده است، لطفا با راهبر سیستم خود تماس بگیرید."
 
 #. module: product
 #: code:addons/product/models/product_pricelist.py:0
@@ -3165,6 +3173,12 @@ msgstr ""
 msgid ""
 "You cannot define the decimal precision of 'Account' as greater than the "
 "rounding factor of the company's main currency"
+msgstr ""
+
+#. module: product
+#: code:addons/product/models/product.py:0
+#, python-format
+msgid "You cannot delete the %s product category."
 msgstr ""
 
 #. module: product
