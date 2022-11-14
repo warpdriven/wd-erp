@@ -15,17 +15,17 @@
 # Harcogourmet, 2022
 # Martin Trigaux, 2022
 # Jonatan Gk, 2022
-# jabelchi, 2022
 # marcescu, 2022
 # eriiikgt, 2022
+# Josep Anton Belchi, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 08:19+0000\n"
+"POT-Creation-Date: 2022-08-24 01:53+0000\n"
 "PO-Revision-Date: 2021-09-14 12:23+0000\n"
-"Last-Translator: eriiikgt, 2022\n"
+"Last-Translator: Josep Anton Belchi, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -633,9 +633,21 @@ msgid "Group By..."
 msgstr "Agrupa per..."
 
 #. module: im_livechat
+#: code:addons/im_livechat/models/im_livechat_channel.py:0
+#: model:im_livechat.channel,button_text:im_livechat.im_livechat_channel_data
+#, python-format
+msgid "Have a Question? Chat with us."
+msgstr ""
+
+#. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel__header_background_color
 msgid "Header Background Color"
 msgstr ""
+
+#. module: im_livechat
+#: model:im_livechat.channel,default_message:im_livechat.im_livechat_channel_data
+msgid "Hello, how may I help you?"
+msgstr "Hola, com puc ajudar-vos?"
 
 #. module: im_livechat
 #: model:ir.model.fields.selection,name:im_livechat.selection__im_livechat_channel_rule__action__hide_button
@@ -919,7 +931,7 @@ msgstr "Marcar com a pendents per realitzar"
 #: code:addons/im_livechat/static/src/legacy/public_livechat.xml:0
 #, python-format
 msgid "Mark as todo"
-msgstr ""
+msgstr "Marca com a pendent"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel_rule__sequence
@@ -1268,7 +1280,7 @@ msgstr "Reinicia el zoom"
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_form
 msgid "Reset to default colors"
-msgstr ""
+msgstr "Restablir els colors per defecte"
 
 #. module: im_livechat
 #. openerp-web
@@ -1309,7 +1321,7 @@ msgstr ""
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.mail_channel_view_search
 msgid "Search history"
-msgstr ""
+msgstr "Historial de cerques"
 
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.im_livechat_report_channel_view_search
@@ -1420,7 +1432,7 @@ msgstr ""
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_im_livechat_channel__button_text
 msgid "Text of the Button"
-msgstr ""
+msgstr "Text del botó"
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel__input_placeholder
@@ -1590,6 +1602,9 @@ msgid ""
 " load a canned response, start your sentence with ':' and select the "
 "template."
 msgstr ""
+"Usa respostes predefinides per a definir plantilles de missatges a la "
+"aplicació livechat. Per a carregar una resposta predefinida, comenceu "
+"escrivint '.' i seleccioneu la plantilla."
 
 #. module: im_livechat
 #: model:res.groups,name:im_livechat.im_livechat_group_user

@@ -80,7 +80,20 @@ export function areSimilarElements(node, node2) {
 class Sanitize {
     constructor(root) {
         this.root = root;
+        const rootClosestBlock = closestBlock(root);
+        if (rootClosestBlock) {
+            // Remove unique ids from checklists. These will be renewed afterwards.
+            for (const node of rootClosestBlock.querySelectorAll('[id^=checklist-id-]')) {
+                node.removeAttribute('id');
+            }
+        }
         this.parse(root);
+        if (rootClosestBlock) {
+            // Ensure unique ids on checklists and stars.
+            for (const node of rootClosestBlock.querySelectorAll('.o_checklist > li')) {
+                node.setAttribute('id', `checklist-id-${Math.floor(new Date() * Math.random())}`);
+            }
+        }
     }
 
     parse(node) {
@@ -117,6 +130,7 @@ class Sanitize {
             if (
                 node.nodeType === Node.TEXT_NODE &&
                 node.textContent.includes('\u200B') &&
+                node.parentElement.hasAttribute('oe-zws-empty-inline') &&
                 (
                     node.textContent.length > 1 ||
                     // There can be multiple ajacent text nodes, in which case
@@ -178,7 +192,10 @@ class Sanitize {
             ) {
                 node.setAttribute('contenteditable', 'false');
             }
-            // update link URL if label is a new valid link
+            if (node.firstChild) {
+                this._parse(node.firstChild);
+            }
+            // Update link URL if label is a new valid link.
             if (node.nodeName === 'A' && anchorEl === node) {
                 const linkLabel = node.textContent;
                 const match = linkLabel.match(URL_REGEX);
@@ -186,9 +203,6 @@ class Sanitize {
                     const urlInfo = getUrlsInfosInString(linkLabel)[0];
                     node.setAttribute('href', urlInfo.url);
                 }
-            }
-            if (node.firstChild) {
-                this._parse(node.firstChild);
             }
             node = node.nextSibling;
         }
