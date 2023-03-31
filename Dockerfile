@@ -1,4 +1,4 @@
-FROM odoo:15
+FROM odoo:16
 MAINTAINER Cubean <cubean@warp-driven.com>
 
 USER root
