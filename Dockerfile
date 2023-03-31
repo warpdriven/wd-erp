@@ -2,7 +2,7 @@ FROM odoo:16
 MAINTAINER Cubean <cubean@warp-driven.com>
 
 USER root
-COPY ./odoo /usr/lib/python3/dist-packages/odoo
+#COPY ./odoo /usr/lib/python3/dist-packages/odoo
 ADD /requirements_extend.txt .
 # Set default user when running the container
 USER odoo
