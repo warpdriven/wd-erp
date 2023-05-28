@@ -1,1 +1,2 @@
 woocommerce==3.0.0
+fastapi~=0.95.2
