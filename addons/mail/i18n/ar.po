@@ -15,10 +15,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 10:33+0000\n"
+"POT-Creation-Date: 2023-05-23 08:22+0000\n"
 "PO-Revision-Date: 2022-09-22 05:53+0000\n"
 "Last-Translator: Malaz Abuidris <msea@odoo.com>, 2023\n"
-"Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
+"Language-Team: Arabic (https://app.transifex.com/odoo/teams/41243/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -1447,8 +1447,8 @@ msgid "Animals & Nature"
 msgstr "الحيوانات والطبيعة"
 
 #. module: mail
-#. odoo-javascript
 #. odoo-python
+#. odoo-javascript
 #: code:addons/mail/models/mail_channel.py:0
 #: code:addons/mail/static/src/components/message/message.xml:0
 #: code:addons/mail/static/src/models/message.js:0
@@ -2411,8 +2411,8 @@ msgstr "الشركات "
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/js/activity.js:0
-#: code:addons/mail/static/src/models/mail_template.js:0
 #: code:addons/mail/static/src/models/composer_view.js:0
+#: code:addons/mail/static/src/models/mail_template.js:0
 #: model:ir.actions.act_window,name:mail.action_email_compose_message_wizard
 #: model_terms:ir.ui.view,arch_db:mail.email_compose_message_wizard_form
 #, python-format
@@ -3058,6 +3058,7 @@ msgstr "قطع الاتصال من نداء RTC بواسطة الخادم "
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/components/thread_view_topbar/thread_view_topbar.xml:0
+#: code:addons/mail/static/src/models/discuss.js:0
 #: model:ir.actions.client,name:mail.action_discuss
 #: model:ir.ui.menu,name:mail.mail_menu_technical
 #: model:ir.ui.menu,name:mail.menu_root_discuss
@@ -4073,13 +4074,6 @@ msgstr "الحصول على بيانات اعتماد الواجهة البرم�
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "Gmail Credentials"
 msgstr "بيانات اعتماد Gmail "
-
-#. module: mail
-#. odoo-python
-#: code:addons/mail/models/res_users.py:0
-#, python-format
-msgid "Go to the configuration panel"
-msgstr "الذهاب إلى لوحة الإعدادات "
 
 #. module: mail
 #: model:ir.model.fields.selection,name:mail.selection__mail_channel__channel_type__group
@@ -5634,7 +5628,7 @@ msgstr "مخطط البريد الإلكتروني "
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_mail__mail_message_id_int
 msgid "Mail Message Id Int"
-msgstr ""
+msgstr "Mail Message Id Int"
 
 #. module: mail
 #: model:ir.model,name:mail.model_mail_channel_rtc_session
@@ -5799,6 +5793,13 @@ msgstr "تعيين كمنتظر التنفيذ "
 #, python-format
 msgid "Mark as done"
 msgstr "التعيين كمنتهي "
+
+#. module: mail
+#. odoo-javascript
+#: code:addons/mail/static/src/models/call_settings_menu.js:0
+#, python-format
+msgid "Media devices unobtainable"
+msgstr ""
 
 #. module: mail
 #: model:mail.activity.type,name:mail.mail_activity_data_meeting
@@ -7955,7 +7956,7 @@ msgid "Review All Templates"
 msgstr "مراجعة كافة القوالب "
 
 #. module: mail
-#: model:ir.model.fields,field_description:mail.field_mail_mail__body_html
+#: model:ir.model.fields,field_description:mail.field_mail_mail__body_content
 msgid "Rich-text Contents"
 msgstr "محتوى النص "
 
@@ -8019,6 +8020,13 @@ msgstr "زر النجدة "
 #: model_terms:ir.ui.view,arch_db:mail.view_email_server_search
 msgid "SSL"
 msgstr "SSL"
+
+#. module: mail
+#. odoo-javascript
+#: code:addons/mail/static/src/models/call_settings_menu.js:0
+#, python-format
+msgid "SSL might not be set up properly"
+msgstr ""
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_fetchmail_server__is_ssl
@@ -9049,6 +9057,11 @@ msgstr "القوالب "
 #: model_terms:ir.ui.view,arch_db:mail.view_email_server_form
 msgid "Test & Confirm"
 msgstr "اختبار وتأكيد"
+
+#. module: mail
+#: model:ir.model.fields,field_description:mail.field_mail_mail__body_html
+msgid "Text Contents"
+msgstr "محتوى النص "
 
 #. module: mail
 #. odoo-javascript
@@ -10364,17 +10377,6 @@ msgstr "يمكنك فقط فتح ملف التعريف للقنوات الموج
 #, python-format
 msgid "You can only open the profile of existing users."
 msgstr "يمكنك فقط فتح الملف الشخصي المستخدمين الموجودين حالياً."
-
-#. module: mail
-#. odoo-python
-#: code:addons/mail/models/res_users.py:0
-#, python-format
-msgid ""
-"You cannot create a new user from here.\n"
-" To create new user please go to configuration panel."
-msgstr ""
-"لا يمكنك إنشاء مستخدم جديد من هنا.\n"
-"لإنشاء مستخدم جديد يرجى الذهاب إلى لوحة الإعدادات. "
 
 #. module: mail
 #. odoo-python
@@ -16357,8 +16359,8 @@ msgid "doctor"
 msgstr "طبيب "
 
 #. module: mail
-#. odoo-javascript
 #. odoo-python
+#. odoo-javascript
 #: code:addons/mail/models/mail_thread.py:0
 #: code:addons/mail/static/src/components/message/message.xml:0
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
@@ -16621,35 +16623,35 @@ msgstr "شراب "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "drink carton"
-msgstr ""
+msgstr "علبة شراب "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "drinking"
-msgstr ""
+msgstr "يشرب "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "dromedary"
-msgstr ""
+msgstr "جمل "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "drooling"
-msgstr ""
+msgstr "لعاب "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "drooling face"
-msgstr ""
+msgstr "وجه مع لعاب "
 
 #. module: mail
 #. odoo-javascript
@@ -16712,21 +16714,21 @@ msgstr "بطة "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "dumpling"
-msgstr ""
+msgstr "زلابية "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "dung"
-msgstr ""
+msgstr "براز "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "dupe"
-msgstr ""
+msgstr "شطرنج "
 
 #. module: mail
 #. odoo-javascript
@@ -16756,7 +16758,7 @@ msgstr "ديناميت "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "dépanneur"
-msgstr ""
+msgstr "متجر 24 ساعة "
 
 #. module: mail
 #. odoo-javascript
@@ -16860,7 +16862,7 @@ msgstr "أذن "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "ear of corn"
-msgstr ""
+msgstr "ذرة "
 
 #. module: mail
 #. odoo-javascript
@@ -18581,7 +18583,7 @@ msgstr "خبز مسطح "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "flavoring"
-msgstr ""
+msgstr "نكهة "
 
 #. module: mail
 #. odoo-javascript
@@ -18589,7 +18591,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "flavouring"
-msgstr ""
+msgstr "لذيذ "
 
 #. module: mail
 #. odoo-javascript
@@ -19916,7 +19918,7 @@ msgstr "وجه بابتسامة عريضة مع عرق "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "grinning squinting face"
-msgstr ""
+msgstr "وجه ضاحك بأعين مغلقة "
 
 #. module: mail
 #. odoo-javascript
@@ -20256,7 +20258,7 @@ msgstr "يد "
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hand with fingers splayed"
-msgstr ""
+msgstr "كف اليد "
 
 #. module: mail
 #. odoo-javascript
@@ -20264,7 +20266,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "handbag"
-msgstr ""
+msgstr "حقيبة يد "
 
 #. module: mail
 #. odoo-javascript
@@ -20273,14 +20275,14 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "handball"
-msgstr ""
+msgstr "كرة اليد "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "handgun"
-msgstr ""
+msgstr "مسدس "
 
 #. module: mail
 #. odoo-javascript
@@ -20288,7 +20290,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "handshake"
-msgstr ""
+msgstr "مصافحة "
 
 #. module: mail
 #. odoo-javascript
@@ -20352,7 +20354,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hat"
-msgstr ""
+msgstr "قبعة "
 
 #. module: mail
 #. odoo-javascript
@@ -20366,21 +20368,21 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hatching"
-msgstr ""
+msgstr "يفقس "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hatching chick"
-msgstr ""
+msgstr "فرخ يفقس "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "head"
-msgstr ""
+msgstr "رأس "
 
 #. module: mail
 #. odoo-javascript
@@ -20388,14 +20390,14 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "headphone"
-msgstr ""
+msgstr "سماعة "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "headscarf"
-msgstr ""
+msgstr "حجاب "
 
 #. module: mail
 #. odoo-javascript
@@ -20403,7 +20405,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "health care"
-msgstr ""
+msgstr "الرعاية الصحية "
 
 #. module: mail
 #. odoo-javascript
@@ -20411,7 +20413,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "healthcare"
-msgstr ""
+msgstr "الرعاية الصحية "
 
 #. module: mail
 #. odoo-javascript
@@ -20419,7 +20421,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hear"
-msgstr ""
+msgstr "يسمع "
 
 #. module: mail
 #. odoo-javascript
@@ -20427,7 +20429,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hear-no-evil monkey"
-msgstr ""
+msgstr "قرد لا يسمع "
 
 #. module: mail
 #. odoo-javascript
@@ -20435,7 +20437,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hearing impaired"
-msgstr ""
+msgstr "أصم "
 
 #. module: mail
 #. odoo-javascript
@@ -20448,7 +20450,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heart"
-msgstr ""
+msgstr "قلب "
 
 #. module: mail
 #. odoo-javascript
@@ -20456,7 +20458,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heart decoration"
-msgstr ""
+msgstr "قلب مع زينة "
 
 #. module: mail
 #. odoo-javascript
@@ -20464,7 +20466,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heart exclamation"
-msgstr ""
+msgstr "قلب بعلامة تعجب "
 
 #. module: mail
 #. odoo-javascript
@@ -20480,7 +20482,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heart with arrow"
-msgstr ""
+msgstr "قلب مع سهم "
 
 #. module: mail
 #. odoo-javascript
@@ -20488,28 +20490,28 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heart with ribbon"
-msgstr ""
+msgstr "قلب مع شريطة "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heartbeat"
-msgstr ""
+msgstr "قلب ينبض "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hearts"
-msgstr ""
+msgstr "قلوب "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heat stroke"
-msgstr ""
+msgstr "ضربة شمس "
 
 #. module: mail
 #. odoo-javascript
@@ -20517,28 +20519,28 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heavy dollar sign"
-msgstr ""
+msgstr "دولار "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heavy minus sign"
-msgstr ""
+msgstr "ناقص "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heavy multiplication sign"
-msgstr ""
+msgstr "ضرب "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heavy tick mark"
-msgstr ""
+msgstr "صح "
 
 #. module: mail
 #. odoo-javascript
@@ -20546,14 +20548,14 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hedgehog"
-msgstr ""
+msgstr "قنفذ "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heel"
-msgstr ""
+msgstr "كعب "
 
 #. module: mail
 #. odoo-javascript
@@ -20561,14 +20563,14 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "helicopter"
-msgstr ""
+msgstr "هليكوبتر "
 
 #. module: mail
 #. odoo-javascript
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "helmet"
-msgstr ""
+msgstr "خوذة "
 
 #. module: mail
 #. odoo-javascript
@@ -20584,7 +20586,7 @@ msgstr "المساعدة"
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "herb"
-msgstr ""
+msgstr "عشبة "
 
 #. module: mail
 #. odoo-javascript
@@ -20593,7 +20595,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "hero"
-msgstr ""
+msgstr "بطل "
 
 #. module: mail
 #. odoo-javascript
@@ -20601,7 +20603,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "heroine"
-msgstr ""
+msgstr "بطلة "
 
 #. module: mail
 #. odoo-javascript
@@ -25804,7 +25806,7 @@ msgstr ""
 #: code:addons/mail/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "open"
-msgstr ""
+msgstr "فتح "
 
 #. module: mail
 #. odoo-javascript
