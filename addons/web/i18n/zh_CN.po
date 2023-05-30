@@ -4064,8 +4064,8 @@ msgstr "由%s%s提供支持"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "由<span>Odoo</span>提供支持"
+msgid "Powered by <span>Warp Driven Technology</span>"
+msgstr "由<span>Warp Driven Technology</span>提供支持"
 
 #. module: web
 #. odoo-javascript
