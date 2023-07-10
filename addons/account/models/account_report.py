@@ -140,6 +140,16 @@ class AccountReport(models.Model):
             if report.root_report_id.root_report_id:
                 raise ValidationError(_("Only a report without a root report of its own can be selected as root report."))
 
+    @api.constrains('line_ids')
+    def _validate_parent_sequence(self):
+        previous_lines = self.env['account.report.line']
+        for line in self.line_ids:
+            if line.parent_id and line.parent_id not in previous_lines:
+                raise ValidationError(
+                    _('Line "%s" defines line "%s" as its parent, but appears before it in the report. '
+                      'The parent must always come first.', line.name, line.parent_id.name))
+            previous_lines |= line
+
     def write(self, vals):
         # Overridden so that changing the country of a report also creates new tax tags if necessary, or updates the country
         # of existing tags, if they aren't shared with another report.
@@ -280,6 +290,11 @@ class AccountReportLine(models.Model):
                     expression.report_line_id.display_name,
                 ))
 
+    @api.constrains('parent_id')
+    def _check_parent_line(self):
+        for line in self.filtered(lambda x: x.parent_id == x):
+            raise ValidationError(_('Line "%s" defines itself as its parent.', line.name))
+
     def _copy_hierarchy(self, copied_report, parent=None, code_mapping=None):
         ''' Copy the whole hierarchy from this line by copying each line children recursively and adapting the
         formulas with the new copied codes.
@@ -293,7 +308,7 @@ class AccountReportLine(models.Model):
         copied_line = self.copy({
             'report_id': copied_report.id,
             'parent_id': parent and parent.id,
-            'code': self.code and self._get_copied_code(),
+            'code': self._get_copied_code(),
         })
 
         # Keep track of old_code -> new_code in a mutable dict
@@ -324,6 +339,8 @@ class AccountReportLine(models.Model):
         :return: an unique code for the copied account.report.line
         '''
         self.ensure_one()
+        if not self.code:
+            return False
         code = self.code + '_COPY'
         while self.search_count([('code', '=', code)]) > 0:
             code += '_COPY'

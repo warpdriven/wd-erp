@@ -147,7 +147,7 @@ msgstr ""
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.ticket_validation_screen
 msgid "<i class=\"fa fa-pencil\"/> Edit"
-msgstr "<i class=\"fa fa-pencil\"/> Éditer"
+msgstr "<i class=\"fa fa-pencil\"/> Modifier"
 
 #. module: point_of_sale
 #. odoo-python
@@ -2179,7 +2179,7 @@ msgstr "Retracer les erreurs de téléchargement"
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
 msgid "Edit"
-msgstr "Éditer"
+msgstr "Modifier"
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -5372,6 +5372,14 @@ msgstr ""
 #. module: point_of_sale
 #. odoo-javascript
 #: code:addons/point_of_sale/static/src/xml/Screens/PaymentScreen/PaymentScreenPaymentLines.xml:0
+#: code:addons/point_of_sale/models/pos_order.py:0
+#, python-format
+msgid "Reversal of: %s"
+msgstr "Extourne de : %s"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/xml/Screens/PaymentScreen/PaymentScreenElectronicPayment.xml:0
 #, python-format
 msgid "Reversal request sent to terminal"
 msgstr "Demande d'extourne envoyée au terminal"
@@ -5469,14 +5477,14 @@ msgstr "Journal de ventes"
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_config_view_form
 #, python-format
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 #. module: point_of_sale
 #: model_terms:ir.ui.view,arch_db:point_of_sale.pos_config_view_form
 #: model_terms:ir.ui.view,arch_db:point_of_sale.res_config_settings_view_form
 msgid "Save this page and come back here to set up the feature."
 msgstr ""
-"Sauvegardez cette page, vous pouvez y revenir pour appliquer vos nouvelles "
+"Enregistrez cette page, vous pouvez y revenir pour appliquer vos nouvelles "
 "fonctionnalités."
 
 #. module: point_of_sale
@@ -7122,7 +7130,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/js/Screens/PartnerListScreen/PartnerListScreen.js:0
 #, python-format
 msgid "Unable to save changes."
-msgstr "Impossible de sauvegarder les modifications."
+msgstr "Impossible d'enregistrer les modifications."
 
 #. module: point_of_sale
 #. odoo-javascript
@@ -7433,13 +7441,6 @@ msgstr ""
 
 #. module: point_of_sale
 #. odoo-python
-#: code:addons/point_of_sale/models/pos_config.py:0
-#, python-format
-msgid "You can only have one cash payment method."
-msgstr "Vous ne pouvez qu'avoir un seul mode de paiement en espèces."
-
-#. module: point_of_sale
-#. odoo-python
 #: code:addons/point_of_sale/models/pos_order.py:0
 #, python-format
 msgid ""
@@ -7449,8 +7450,8 @@ msgid ""
 msgstr ""
 "Vous ne pouvez pas créer une commande PdV depuis l'interface du backend ou "
 "annuler la liste de prix ou créer une commande PdV dans un test python avec "
-"l'outil Formulaire ou éditer la vue formulaire dans studio s'il n'y a aucune"
-" commande PdV"
+"l'outil Formulaire ou modifier la vue formulaire dans studio s'il n'y a "
+"aucune commande PdV"
 
 #. module: point_of_sale
 #. odoo-python

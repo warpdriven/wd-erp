@@ -14,6 +14,9 @@
 # Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2023
 # Martin Trigaux, 2023
 # Luis D Lafaurie, 2023
+# jabelchi, 2023
+# Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2023
+# kikopeiro <francisco.peiro@factorlibre.com>, 2023
 # 
 msgid ""
 msgstr ""
@@ -21,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-23 08:23+0000\n"
 "PO-Revision-Date: 2022-09-22 05:44+0000\n"
-"Last-Translator: Luis D Lafaurie, 2023\n"
+"Last-Translator: kikopeiro <francisco.peiro@factorlibre.com>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/odoo/teams/41243/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10015,7 +10018,7 @@ msgstr "Etiqueta de acción del cliente"
 #: model_terms:ir.ui.view,arch_db:base.view_base_module_update
 #: model_terms:ir.ui.view,arch_db:base.wizard_lang_export
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Cerrado"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.onboarding_container
@@ -10227,7 +10230,7 @@ msgstr "Favicon de la Compañía"
 #: model:ir.model.fields,field_description:base.field_res_partner__company_registry
 #: model:ir.model.fields,field_description:base.field_res_users__company_registry
 msgid "Company ID"
-msgstr ""
+msgstr "ID de la empresa"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_company__logo
@@ -10321,6 +10324,13 @@ msgstr "Nombre completo"
 #: model:ir.model.fields,field_description:base.field_ir_model_fields__compute
 msgid "Compute"
 msgstr "Calcular"
+
+#. module: base
+#. odoo-python
+#: code:addons/base/models/ir_model.py:0
+#, python-format
+msgid "Compute method cannot depend on field 'id'"
+msgstr ""
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_model_form
@@ -20702,7 +20712,7 @@ msgstr "Opciones"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model__order
 msgid "Order"
-msgstr "Pedido"
+msgstr "Orden"
 
 #. module: base
 #: model:ir.module.module,description:base.module_website_event_track
@@ -25597,7 +25607,7 @@ msgstr ""
 #: code:addons/model.py:0 code:addons/model.py:0
 #, python-format
 msgid "The operation cannot be completed: %s"
-msgstr ""
+msgstr "No se puede completar la operación: %s"
 
 #. module: base
 #. odoo-python
@@ -25992,7 +26002,7 @@ msgstr ""
 #: code:addons/image.py:0 code:addons/image.py:0 code:addons/image.py:0
 #, python-format
 msgid "This file could not be decoded as an image file."
-msgstr ""
+msgstr "No se pudo descifrar este archivo como un archivo de imagen. "
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.wizard_lang_export
@@ -28261,6 +28271,12 @@ msgstr "No puede desactivar el usuario que está usando ahora mismo."
 
 #. module: base
 #. odoo-python
+#: code:addons/base/models/res_users.py:0
+#, python-format
+msgid "You cannot delete a group linked with a settings field."
+msgstr ""
+
+#. module: base
 #: code:addons/base/models/res_partner.py:0
 #, python-format
 msgid ""
