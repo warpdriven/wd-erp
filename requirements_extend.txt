@@ -1,2 +1,4 @@
+pexpect
 woocommerce==3.0.0
-fastapi~=0.95.2
+fastapi~=0.100.0
+redis~=4.6.0
