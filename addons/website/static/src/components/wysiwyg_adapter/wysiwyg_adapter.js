@@ -6,6 +6,7 @@ import { useWowlService } from '@web/legacy/utils';
 import { useHotkey } from '@web/core/hotkeys/hotkey_hook';
 import { setEditableWindow } from 'web_editor.utils';
 import { useBus } from "@web/core/utils/hooks";
+import { isMediaElement } from '@web_editor/js/editor/odoo-editor/src/utils/utils';
 
 import { EditMenuDialog, MenuDialog } from "../dialog/edit_menu";
 import { WebsiteDialog } from '../dialog/dialog';
@@ -36,7 +37,8 @@ export class WysiwygAdapterComponent extends ComponentAdapter {
 
         this.oeStructureSelector = '#wrapwrap .oe_structure[data-oe-xpath][data-oe-id]';
         this.oeFieldSelector = '#wrapwrap [data-oe-field]:not([data-oe-sanitize-prevent-edition])';
-        this.oeCoverSelector = '#wrapwrap .s_cover[data-res-model], #wrapwrap .o_record_cover_container[data-res-model]';
+        this.oeRecordCoverSelector = "#wrapwrap .o_record_cover_container[data-res-model]";
+        this.oeCoverSelector = `#wrapwrap .s_cover[data-res-model], ${this.oeRecordCoverSelector}`;
         if (this.props.savableSelector) {
             this.savableSelector = this.props.savableSelector;
         } else {
@@ -362,22 +364,40 @@ export class WysiwygAdapterComponent extends ComponentAdapter {
             .not('input, [data-oe-readonly], ' +
                  '[data-oe-type="monetary"], [data-oe-many2one-id], [data-oe-field="arch"]:empty')
             .filter((_, el) => {
-                return !$(el).closest('.o_not_editable').length;
+                // The whole record cover is considered editable by the editor,
+                // which makes it possible to add content (text, images,...)
+                // from the text tools. To fix this issue, we need to reduce the
+                // editable area to its editable fields only, but first, we need
+                // to remove the cover along with its descendants from the
+                // initial editable zones.
+                return !$(el).closest('.o_not_editable').length && !el.closest(this.oeRecordCoverSelector);
             });
 
-        // TODO review in master. This stable fix restores the possibility to
+        // TODO migrate in master. This stable fix restores the possibility to
         // edit the company team snippet images on subsequent editions. Indeed
-        // this badly relies on the contenteditable="true" attribute being on
-        // those images but it is rightfully lost after the first save.
-        // grep: COMPANY_TEAM_CONTENTEDITABLE
-        let $extraEditableZones = $editableSavableZones.find('.s_company_team .o_not_editable img');
+        // this badly relied on the contenteditable="true" attribute being on
+        // those images but it is rightfully lost after the first save. Later,
+        // the o_editable_media class system was implemented and the class was
+        // added in the snippet template but this did not solve existing
+        // snippets in user databases.
+        let $extraEditableZones = $editableSavableZones.find('.s_company_team .o_not_editable *')
+            .filter((i, el) => isMediaElement(el) || el.tagName === 'IMG');
+        // Same as above for social media icons.
+        $extraEditableZones = $extraEditableZones.add($editableSavableZones
+            .find('.s_social_media a > i'));
+
+        // TODO find a similar system for texts.
+        // grep: SOCIAL_MEDIA_TITLE_CONTENTEDITABLE
+        $extraEditableZones = $extraEditableZones.add($editableSavableZones
+            .find('.s_social_media .s_social_media_title'));
 
         // To make sure the selection remains bounded to the active tab,
         // each tab is made non editable while keeping its nested
         // oe_structure editable. This avoids having a selection range span
         // over all further inactive tabs when using Chrome.
         // grep: .s_tabs
-        $extraEditableZones = $extraEditableZones.add($editableSavableZones.find('.tab-pane > .oe_structure'));
+        $extraEditableZones = $extraEditableZones.add($editableSavableZones.find('.tab-pane > .oe_structure'))
+            .add(this.websiteService.pageDocument.querySelectorAll(`${this.oeRecordCoverSelector} [data-oe-field]:not([data-oe-field="arch"])`));
 
         return $editableSavableZones.add($extraEditableZones).toArray();
     }
@@ -518,6 +538,10 @@ export class WysiwygAdapterComponent extends ComponentAdapter {
         await Promise.all(proms).then(() => {
             $allLinksIframe.remove();
         });
+
+        // TODO review naming in master (to not call an event handler like that)
+        this._onColorPreviewsUpdate();
+
         if (event.data.onSuccess) {
             return event.data.onSuccess();
         }

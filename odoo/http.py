@@ -283,7 +283,7 @@ class SessionExpiredException(Exception):
 
 def content_disposition(filename):
     return "attachment; filename*=UTF-8''{}".format(
-        url_quote(filename, safe='')
+        url_quote(filename, safe='', unsafe='()<>@,;:"/[]?={}\\*\'%') # RFC6266
     )
 
 def db_list(force=False, host=None):
@@ -980,6 +980,7 @@ class Session(collections.abc.MutableMapping):
 
         self.should_rotate = True
         self.update({
+            'db': env.registry.db_name,
             'login': login,
             'uid': uid,
             'context': user_context,
@@ -1117,6 +1118,10 @@ class FutureResponse:
 
     def __init__(self):
         self.headers = werkzeug.datastructures.Headers()
+
+    @property
+    def _charset(self):
+        return self.charset
 
     @functools.wraps(werkzeug.Response.set_cookie)
     def set_cookie(self, key, value='', max_age=None, expires=None, path='/', domain=None, secure=False, httponly=False, samesite=None, cookie_type='required'):
@@ -1533,9 +1538,11 @@ class Request:
         try:
             directory = root.statics[module]
             filepath = werkzeug.security.safe_join(directory, path)
-            return Stream.from_path(filepath).get_response(
+            res = Stream.from_path(filepath).get_response(
                 max_age=0 if 'assets' in self.session.debug else STATIC_CACHE,
             )
+            root.set_csp(res)
+            return res
         except KeyError:
             raise NotFound(f'Module "{module}" not found.\n')
         except OSError:  # cover both missing file and invalid permissions

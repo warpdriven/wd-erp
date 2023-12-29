@@ -6,8 +6,8 @@
 # MOHAMMAD IBRAHIM <m.moamir@outlook.com>, 2022
 # Mustafa Rawi <mustafa@cubexco.com>, 2022
 # Martin Trigaux, 2022
-# Niyas Raphy, 2022
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2023
+# Niyas Raphy, 2023
 # Malaz Abuidris <msea@odoo.com>, 2023
 # 
 msgid ""
@@ -3712,7 +3712,7 @@ msgstr "فشل تكوين قالب inline_template: %s) "
 #: code:addons/mail/models/mail_render_mixin.py:0
 #, python-format
 msgid "Failed to render template : %s"
-msgstr "فشل معالجة القالب : %s"
+msgstr "فشل تكوين القالب : %s"
 
 #. module: mail
 #: model:ir.model.fields,field_description:mail.field_mail_mail__failure_reason
@@ -4104,7 +4104,7 @@ msgid ""
 "Group authorization and group auto-subscription are only supported on "
 "channels."
 msgstr ""
-"خاصيتي التفويض الجماعي والاشتاك التلقائي الجماعي مدعومتان في القنوات فقط. "
+"خاصيتي التفويض الجماعي والاشتراك التلقائي الجماعي مدعومتان في القنوات فقط. "
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.view_email_template_search
@@ -6645,8 +6645,8 @@ msgstr "عدد الأخطاء "
 #: model:ir.model.fields,help:mail.field_mail_thread_cc__message_needaction_counter
 #: model:ir.model.fields,help:mail.field_res_partner__message_needaction_counter
 #: model:ir.model.fields,help:mail.field_res_users__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء "
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_mail_blacklist__message_has_error_counter
@@ -8342,7 +8342,7 @@ msgstr "إرسال رسالة إلى المتابعين …"
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
 msgid "Send and receive emails through your Gmail account."
 msgstr ""
-"قم بإرسال واستلام رسائلل البريد الإلكتروني من خلال حساب Gmail الخاص بك. "
+"قم بإرسال واستلام رسائل البريد الإلكتروني من خلال حساب Gmail الخاص بك. "
 
 #. module: mail
 #: model_terms:ir.ui.view,arch_db:mail.res_config_settings_view_form
@@ -9119,7 +9119,7 @@ msgstr "المرفق %s غير موجود أو إنك لا تملك حق الو�
 #: code:addons/mail/models/ir_attachment.py:0
 #, python-format
 msgid "The attachment %s does not exist."
-msgstr ""
+msgstr "المرفق %s غير موجود. "
 
 #. module: mail
 #. odoo-javascript
@@ -10061,6 +10061,16 @@ msgstr ""
 "الرسائل في النسختين أودو المجتمعي وأودو للمؤسسات. مستخدمي النسخة عبر "
 "الإنترنت يستفيدون بالفعل من خادم بريد إلكتروني جاهز للاستعمال "
 "(@mycompany.odoo.com). "
+
+#. module: mail
+#: code:addons/mail/models/mail_alias.py:0
+#, python-format
+msgid ""
+"Value for `mail.catchall.domain.allowed` cannot be validated.\n"
+"It should be a comma separated list of domains e.g. example.com,example.org."
+msgstr ""
+"لا يمكن تصديق قيمة `mail.catchall.domain.allowed`.\n"
+"يجب أن تكون قائمة نطاقات مفصولة بفواصل، مثال: example.com,example.org. "
 
 #. module: mail
 #. odoo-javascript

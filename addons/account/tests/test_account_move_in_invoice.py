@@ -2180,6 +2180,7 @@ class TestAccountMoveInInvoiceOnchanges(AccountTestInvoicingCommon):
         for move_type, amount, counterpart_values_list, payment_state in (
             ('out_invoice', 1000.0, [('out_refund', 1000.0)], 'reversed'),
             ('out_invoice', 1000.0, [('out_refund', 500.0), ('out_refund', 500.0)], 'reversed'),
+            ('out_invoice', 1000.0, [('out_refund', 500.0), ('entry', -500.0)], 'reversed'),
             ('out_invoice', 1000.0, [('reverse', 1000.0)], 'reversed'),
             ('out_receipt', 1000.0, [('out_refund', 1000.0)], 'reversed'),
             ('out_receipt', 1000.0, [('out_refund', 500.0), ('out_refund', 500.0)], 'reversed'),
@@ -2187,6 +2188,7 @@ class TestAccountMoveInInvoiceOnchanges(AccountTestInvoicingCommon):
             ('out_refund', 1000.0, [('reverse', -1000.0)], 'reversed'),
             ('in_invoice', 1000.0, [('in_refund', 1000.0)], 'reversed'),
             ('in_invoice', 1000.0, [('in_refund', 500.0), ('in_refund', 500.0)], 'reversed'),
+            ('in_invoice', 1000.0, [('in_refund', 500.0), ('entry', 500.0)], 'reversed'),
             ('in_invoice', 1000.0, [('reverse', 1000.0)], 'reversed'),
             ('in_receipt', 1000.0, [('in_refund', 1000.0)], 'reversed'),
             ('in_receipt', 1000.0, [('in_refund', 500.0), ('in_refund', 500.0)], 'reversed'),
@@ -2250,12 +2252,13 @@ class TestAccountMoveInInvoiceOnchanges(AccountTestInvoicingCommon):
         allowing them to view the invoice without needing to log in.
         """
 
-        # Create a simple invoice for the partner
         invoice = self.init_invoice(
             'out_invoice', partner=self.partner_a, invoice_date='2023-04-17', amounts=[100])
-
-        # Set the invoice to the 'posted' state
         invoice.action_post()
+
+        # add a follower to the invoice
+        self.partner_b.email = 'partner_b@example.com'
+        invoice.message_subscribe(self.partner_b.ids)
 
         # Create a partner not related to the invoice
         additional_partner = self.env['res.partner'].create({
@@ -2279,6 +2282,7 @@ class TestAccountMoveInInvoiceOnchanges(AccountTestInvoicingCommon):
         # available for further testing
         invoice_send_wizard.template_id.auto_delete = False
 
+        # send the invoice
         invoice_send_wizard.send_and_print_action()
 
         # Find the email sent to the additional partner
@@ -2287,6 +2291,65 @@ class TestAccountMoveInInvoiceOnchanges(AccountTestInvoicingCommon):
             ('recipient_ids', '=', additional_partner.id)
         ])
         self.assertTrue(additional_partner_mail)
-
         self.assertIn('access_token=', additional_partner_mail.body_html,
                       "The additional partner should be sent the link including the token")
+
+        # Find the email sent to the followers
+        follower_mail = self.env['mail.mail'].search([
+            ('res_id', '=', invoice.id),
+            ('recipient_ids', '=', self.partner_b.id)
+        ])
+        self.assertTrue(follower_mail)
+        self.assertNotIn('access_token=', follower_mail.body_html,
+                      "The followers should not bet sent the access token by default")
+
+    def test_onchange_journal_currency(self):
+        """
+        Ensure invoice currency changes on journal change, iff the journal
+        has a currency_id set.
+        """
+
+        chf = self.env.ref('base.CHF')
+        eur = self.env.ref('base.EUR')
+
+        journal_gen_exp = self.env['account.journal'].create({
+            'name': 'Expenses (generic)',
+            'type': 'purchase',
+            'code': 'EXPGEN',
+        })
+        journal_swiss_exp = self.env['account.journal'].create({
+            'name': 'Expenses (CHF)',
+            'type': 'purchase',
+            'code': 'EXPCHF',
+            'currency_id': chf.id,
+        })
+
+        self.invoice.currency_id = eur
+        move_form = Form(self.invoice)
+        invoice = move_form.save()
+        self.assertEqual(invoice.currency_id, eur)
+
+        # No change expected with generic journal
+        move_form.journal_id = journal_gen_exp
+        move_form.save()
+        self.assertEqual(invoice.currency_id, eur,
+                         "Changing to a journal without set currency shouldn't affect invoice currency")
+
+        # Currency should change
+        move_form.journal_id = journal_swiss_exp
+        move_form.save()
+        self.assertEqual(invoice.currency_id, chf,
+                         "Changing to a journal with a set currency should change invoice currency")
+
+    def test_onchange_payment_reference(self):
+        """
+        Ensure payment reference propagation from move to payment term
+        line is done correctly
+        """
+        payment_term_line = self.invoice.line_ids.filtered(lambda l: l.display_type == 'payment_term')
+        with Form(self.invoice) as move_form:
+            move_form.payment_reference = 'test'
+        self.assertEqual(payment_term_line.name, 'test')
+        with Form(self.invoice) as move_form:
+            move_form.payment_reference = False
+        self.assertEqual(payment_term_line.name, '', 'Payment term line was not changed')

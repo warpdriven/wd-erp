@@ -60,13 +60,11 @@ span.o_force_ltr {
     border-top: 1px solid black !important;
 }
 
-/* See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1524 */
 .table-sm {
     > thead > tr > th {
         border-bottom: none !important;
     }
     > tbody > tr {
-        page-break-inside: avoid !important;
         border-top: none !important;
     }
 }
@@ -139,7 +137,7 @@ ol {
 
 /* Checklist */
 ul {
-    .o_checklist {
+    &.o_checklist {
         > li {
             list-style: none;
             position: relative;
@@ -167,6 +165,13 @@ ul {
     }
 }
 
+blockquote {
+    padding: $spacer/2 $spacer;
+    border-left: 5px solid;
+    border-color: map-get($grays, '300');
+    font-style: italic;
+}
+
 // Wkhtmltopdf doesn't handle flexbox properly, both the content
 // of columns and columns themselves does not wrap over new lines
 // when needed: the font of the pdf will reduce to make the content
@@ -179,6 +184,31 @@ ul {
     -webkit-box-flex: 1 !important;
 }
 
+// Report footer need to support bootstrap columns (2, 3 and 4 columns)
+// Even if the width is smaller than the media querry limit from bootstrap.
+// This need come from the footer being editable via the Odoo editor.
+
+.footer {
+    .row {
+        -webkit-box-flex: 1 !important;
+    }
+    .col-lg-3 {
+        flex: 0 0 auto;
+        -webkit-box-flex: 1 !important;
+        width: 25%;
+    }
+    .col-lg-4 {
+        flex: 0 0 auto;
+        -webkit-box-flex: 1 !important;
+        width: 33.33333333%;
+    }
+    .col-lg-6 {
+        flex: 0 0 auto;
+        -webkit-box-flex: 1 !important;
+        width: 50%;
+    }
+}
+
 // Boostrap 5 introduces variable paddings for container which wkhtmltopdf doesn't seem to process, so we restore Boostrap 4's paddings for PDFs
 .container {
     padding-right: $container-padding-x;
@@ -189,6 +219,9 @@ ul {
 .table-borderless {
     tbody, thead, tfoot, tr, td, th {
         border: 0 none;
+    }
+    > :not(:first-child) {
+        border-top-style: none;
     }
 }
 

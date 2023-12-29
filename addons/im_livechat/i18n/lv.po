@@ -1544,6 +1544,13 @@ msgid "Select an option above"
 msgstr ""
 
 #. module: im_livechat
+#. openerp-web
+#: code:addons/im_livechat/static/src/legacy/widgets/feedback.xml:0
+#, python-format
+msgid "Send"
+msgstr "Sūtīt"
+
+#. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_chatbot_script_answer__sequence
 #: model:ir.model.fields,field_description:im_livechat.field_chatbot_script_step__sequence
 msgid "Sequence"
@@ -1879,6 +1886,8 @@ msgstr ""
 msgid ""
 "Would you mind leaving your email address so that we can reach you back?"
 msgstr ""
+"Vai Jūs vēlties atstāt Jūsu e-pasta adresi, lai mēs varētu ar Jums "
+"sazināties?"
 
 #. module: im_livechat
 #. odoo-javascript

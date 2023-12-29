@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
             self.update({'timesheet_total_duration': 0})
             return
         group_data = self.env['account.analytic.line'].sudo()._read_group([
-            ('order_id', 'in', self.ids)
+            ('order_id', 'in', self.ids), ('project_id', '!=', False)
         ], ['order_id', 'unit_amount'], ['order_id'])
         timesheet_unit_amount_dict = defaultdict(float)
         timesheet_unit_amount_dict.update({data['order_id'][0]: data['unit_amount'] for data in group_data})
@@ -109,7 +109,7 @@ class SaleOrder(models.Model):
                 if projects:
                     action['context']['default_project_id'] = projects[0].id
         if self.timesheet_count > 0:
-            action['domain'] = [('so_line', 'in', self.order_line.ids)]
+            action['domain'] = [('so_line', 'in', self.order_line.ids), ('project_id', '!=', False)]
         else:
             action = {'type': 'ir.actions.act_window_close'}
         return action
@@ -131,7 +131,7 @@ class SaleOrderLine(models.Model):
     remaining_hours_available = fields.Boolean(compute='_compute_remaining_hours_available', compute_sudo=True)
     remaining_hours = fields.Float('Remaining Hours on SO', compute='_compute_remaining_hours', compute_sudo=True, store=True)
     has_displayed_warning_upsell = fields.Boolean('Has Displayed Warning Upsell')
-    timesheet_ids = fields.One2many('account.analytic.line', 'so_line', 'Timesheets')
+    timesheet_ids = fields.One2many('account.analytic.line', 'so_line', domain=[('project_id', '!=', False)], string='Timesheets')
 
     def name_get(self):
         res = super(SaleOrderLine, self).name_get()
@@ -237,6 +237,7 @@ class SaleOrderLine(models.Model):
     def _timesheet_create_project(self):
         project = super()._timesheet_create_project()
         project_uom = project.timesheet_encode_uom_id
+        timesheet_uom = self.company_id.timesheet_encode_uom_id
         uom_ids = set(project_uom + self.order_id.order_line.mapped('product_uom'))
         uom_unit = self.env.ref('uom.product_uom_unit')
         uom_hour = self.env.ref('uom.product_uom_hour')
@@ -253,7 +254,7 @@ class SaleOrderLine(models.Model):
             product_type = line.product_id.service_tracking
             if line.is_service and (product_type == 'task_in_project' or product_type == 'project_only') and line.product_id.project_template_id == self.product_id.project_template_id:
                 if uom_per_id.get(line.product_uom.id) or line.product_uom.id == uom_unit.id:
-                    allocated_hours += line.product_uom_qty * uom_per_id.get(line.product_uom.id, project_uom).factor_inv * uom_hour.factor
+                    allocated_hours += line.product_uom_qty * uom_per_id.get(line.product_uom.id, project_uom).factor_inv * timesheet_uom.factor
 
         project.write({
             'allocated_hours': allocated_hours,

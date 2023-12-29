@@ -6,9 +6,9 @@
 # Djordje Marjanovic <djvmarjanovic@gmail.com>, 2022
 # Bojan Borovnjak <bojan.borovnjak@modoolar.com>, 2022
 # Martin Trigaux, 2022
-# Uros Kalajdzic <ukalajdzic@gmail.com>, 2022
 # Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2023
-# Milan Bojovic, 2023
+# Uros Kalajdzic <ukalajdzic@gmail.com>, 2023
+# Milan Bojovic <mbojovic@outlook.com>, 2023
 # 
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-02 10:35+0000\n"
 "PO-Revision-Date: 2022-09-22 05:55+0000\n"
-"Last-Translator: Milan Bojovic, 2023\n"
+"Last-Translator: Milan Bojovic <mbojovic@outlook.com>, 2023\n"
 "Language-Team: Serbian (https://app.transifex.com/odoo/teams/41243/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,6 +89,7 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/fields/basic_fields.js:0
+#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.js:0
 #, python-format
 msgid "%s days ago"
 msgstr ""
@@ -313,12 +314,12 @@ msgstr "<span class=\"text-nowrap\">PDV 15%</span>"
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid ""
 "<span class=\"w-100 o_force_ltr\" itemprop=\"streetAddress\">77 Santa Barbara\n"
-"                                                   Rd<br/>Pleasant Hill CA 94523<br/>United States</span>"
+"                                               Rd<br/>Pleasant Hill CA 94523<br/>United States</span>"
 msgstr ""
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "<span id=\"line_tax_ids\">15.00%</span>"
+msgid "<span id=\"line_tax_ids\">Tax 15%</span>"
 msgstr ""
 
 #. module: web
@@ -333,13 +334,13 @@ msgstr "<span>$ <span class=\"oe_currency_value\">19,250.00</span></span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "<span>5.000</span>"
-msgstr ""
+msgid "<span>5.00</span>"
+msgstr "<span>5.00</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid "<span>Amount</span>"
-msgstr ""
+msgstr "<span>Iznos</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -350,7 +351,7 @@ msgstr "<span>Opis</span>"
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid ""
 "<span>Invoice</span>\n"
-"                           <span>INV/2020/07/0003</span>"
+"                           <span>INV/2023/00003</span>"
 msgstr ""
 
 #. module: web
@@ -399,13 +400,13 @@ msgstr "<strong>Datum fakturisanja:</strong>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "<strong>Subtotal</strong>"
-msgstr "<strong>Subtotal</strong>"
+msgid "<strong>Total</strong>"
+msgstr "<strong>Ukupno</strong>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "<strong>Total</strong>"
-msgstr "<strong>Ukupno</strong>"
+msgid "<strong>Untaxed Amount</strong>"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -800,7 +801,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 #. module: web
 #: model:ir.model.fields,help:web.field_base_document_layout__report_header
@@ -824,6 +825,8 @@ msgstr "Primenite"
 #: code:addons/web/static/src/legacy/js/views/form/form_controller.js:0
 #: code:addons/web/static/src/legacy/js/views/list/list_controller.js:0
 #: code:addons/web/static/src/views/form/form_controller.js:0
+#: code:addons/web/static/src/views/form/form_controller.js:0
+#: code:addons/web/static/src/views/list/list_controller.js:0
 #: code:addons/web/static/src/views/list/list_controller.js:0
 #, python-format
 msgid "Archive"
@@ -856,15 +859,8 @@ msgstr ""
 
 #. module: web
 #. odoo-javascript
-#: code:addons/web/static/src/views/form/form_controller.js:0
-#, python-format
-msgid "Are you sure that you want to archive all this record?"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/views/form/form_controller.js:0
 #: code:addons/web/static/src/legacy/js/views/form/form_controller.js:0
+#: code:addons/web/static/src/views/form/form_controller.js:0
 #, python-format
 msgid "Are you sure that you want to archive this record?"
 msgstr ""
@@ -964,7 +960,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/many2many_binary/many2many_binary_field.xml:0
 #, python-format
 msgid "Attach"
-msgstr ""
+msgstr "Priloži"
 
 #. module: web
 #. odoo-javascript
@@ -1013,7 +1009,7 @@ msgstr "Avatar"
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__layout_background_image
 msgid "Background Image"
-msgstr ""
+msgstr "Pozadinska slika"
 
 #. module: web
 #. odoo-javascript
@@ -1148,7 +1144,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/phone/phone_field.xml:0
 #, python-format
 msgid "Call"
-msgstr ""
+msgstr "Poziv"
 
 #. module: web
 #. odoo-javascript
@@ -1167,7 +1163,6 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/daterange/daterange_field.js:0
 #: code:addons/web/static/src/views/list/list_confirmation_dialog.xml:0
 #: code:addons/web/static/src/views/view_dialogs/export_data_dialog.xml:0
-#: code:addons/web/static/src/webclient/barcode/barcode_scanner.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
 #: model_terms:ir.ui.view,arch_db:web.view_base_document_layout
 #, python-format
@@ -1291,7 +1286,6 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/dialog.xml:0
 #: code:addons/web/static/src/views/fields/relational_utils.xml:0
-#: code:addons/web/static/src/views/form/form_controller.xml:0
 #: code:addons/web/static/src/views/kanban/kanban_column_examples_dialog.xml:0
 #: code:addons/web/static/src/views/view_dialogs/export_data_dialog.xml:0
 #: code:addons/web/static/src/views/view_dialogs/form_view_dialog.xml:0
@@ -1311,7 +1305,7 @@ msgstr ""
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.view_base_document_layout
 msgid "Colors"
-msgstr ""
+msgstr "Boje"
 
 #. module: web
 #. odoo-javascript
@@ -1338,7 +1332,7 @@ msgstr "Kompanija"
 #: model:ir.model.fields,field_description:web.field_base_document_layout__company_details
 #: model_terms:ir.ui.view,arch_db:web.view_base_document_layout
 msgid "Company Details"
-msgstr ""
+msgstr "Detalji o kompaniji"
 
 #. module: web
 #: model:ir.model,name:web.model_base_document_layout
@@ -1358,7 +1352,7 @@ msgstr "Ime kompanije"
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__report_header
 msgid "Company Tagline"
-msgstr ""
+msgstr "Slogan kompanije"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.frontend_layout
@@ -1370,7 +1364,7 @@ msgstr ""
 #: code:addons/web/static/src/search/comparison_menu/comparison_menu.xml:0
 #, python-format
 msgid "Comparison"
-msgstr ""
+msgstr "Poređenje"
 
 #. module: web
 #. odoo-javascript
@@ -1395,7 +1389,7 @@ msgstr ""
 #: code:addons/web/static/src/views/list/list_confirmation_dialog.js:0
 #, python-format
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrda"
 
 #. module: web
 #. odoo-javascript
@@ -1436,7 +1430,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/copy_clipboard/copy_clipboard_field.js:0
 #, python-format
 msgid "Copied"
-msgstr ""
+msgstr "Kopirano"
 
 #. module: web
 #. odoo-javascript
@@ -1587,13 +1581,7 @@ msgstr "Zemlja"
 #: code:addons/web/static/src/views/calendar/calendar_year/calendar_year_popover.xml:0
 #: code:addons/web/static/src/views/calendar/quick_create/calendar_quick_create.xml:0
 #: code:addons/web/static/src/views/fields/many2one/many2one_field.xml:0
-#: code:addons/web/static/src/views/fields/many2one/many2one_field.xml:0
-#: code:addons/web/static/src/views/form/form_controller.xml:0
-#: code:addons/web/static/src/views/form/form_controller.xml:0
-#: code:addons/web/static/src/views/kanban/kanban_controller.xml:0
 #: code:addons/web/static/src/views/kanban/kanban_renderer.js:0
-#: code:addons/web/static/src/views/list/list_controller.xml:0
-#: code:addons/web/static/src/views/view_dialogs/select_create_dialog.xml:0
 #, python-format
 msgid "Create"
 msgstr "Kreirajte"
@@ -1627,6 +1615,13 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/relational_utils.js:0
 #, python-format
 msgid "Create %s"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/views/fields/many2one/many2one_field.js:0
+#, python-format
+msgid "Create <strong>%s</strong> as a new %s?"
 msgstr ""
 
 #. module: web
@@ -1727,7 +1722,7 @@ msgstr ""
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login
 msgid "Database"
-msgstr ""
+msgstr "Baza podataka"
 
 #. module: web
 #. odoo-javascript
@@ -1783,7 +1778,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/properties/property_definition.js:0
 #, python-format
 msgid "Decimal"
-msgstr ""
+msgstr "Decimalan"
 
 #. module: web
 #. odoo-javascript
@@ -1849,6 +1844,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/many2many_tags/tags_list.xml:0
 #: code:addons/web/static/src/views/fields/properties/properties_field.js:0
 #: code:addons/web/static/src/views/fields/properties/property_definition.xml:0
+#: code:addons/web/static/src/views/fields/relational_utils.js:0
 #: code:addons/web/static/src/views/form/form_controller.js:0
 #: code:addons/web/static/src/views/kanban/kanban_renderer.xml:0
 #: code:addons/web/static/src/views/list/list_controller.js:0
@@ -1907,6 +1903,20 @@ msgstr ""
 
 #. module: web
 #. odoo-javascript
+#: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml:0
+#, python-format
+msgid "Developer Tools"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/views/list/list_renderer.js:0
+#, python-format
+msgid "Different currencies cannot be aggregated"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
 #: code:addons/web/static/src/core/domain_selector_dialog/domain_selector_dialog.xml:0
 #: code:addons/web/static/src/legacy/js/fields/relational_fields.js:0
 #: code:addons/web/static/src/legacy/js/views/kanban/kanban_record.js:0
@@ -1917,7 +1927,6 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/views/fields/many2one/many2one_field.xml:0
-#: code:addons/web/static/src/views/fields/relational_utils.xml:0
 #: code:addons/web/static/src/views/fields/relational_utils.xml:0
 #: code:addons/web/static/src/views/fields/translation_dialog.xml:0
 #: code:addons/web/static/src/views/form/form_controller.xml:0
@@ -2275,8 +2284,8 @@ msgid "Exporting grouped data to csv is not supported."
 msgstr ""
 
 #. module: web
-#. odoo-javascript
 #. odoo-python
+#. odoo-javascript
 #: code:addons/web/controllers/export.py:0
 #: code:addons/web/controllers/export.py:0
 #: code:addons/web/static/src/legacy/js/widgets/data_export.js:0
@@ -2313,21 +2322,21 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/fields/field_utils.js:0
 #, python-format
 msgid "False"
-msgstr ""
+msgstr "Netačno"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/views/fields/boolean_favorite/boolean_favorite_field.js:0
 #, python-format
 msgid "Favorite"
-msgstr ""
+msgstr "Omiljeno"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/search/favorite_menu/favorite_menu.xml:0
 #, python-format
 msgid "Favorites"
-msgstr ""
+msgstr "Omiljeni"
 
 #. module: web
 #. odoo-javascript
@@ -2406,7 +2415,7 @@ msgstr "U toku"
 #: code:addons/web/static/src/views/kanban/kanban_renderer.xml:0
 #, python-format
 msgid "Fold"
-msgstr ""
+msgstr "Preklopi"
 
 #. module: web
 #. odoo-javascript
@@ -2427,7 +2436,7 @@ msgstr ""
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__font
 msgid "Font"
-msgstr ""
+msgstr "Font"
 
 #. module: web
 #. odoo-javascript
@@ -2673,14 +2682,8 @@ msgstr "Slika"
 
 #. module: web
 #. odoo-javascript
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
-#, python-format
-msgid "In"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
 #: code:addons/web/static/src/legacy/js/fields/basic_fields.js:0
+#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.js:0
 #, python-format
 msgid "In %s days"
 msgstr ""
@@ -2777,6 +2780,13 @@ msgid "Invalid fields: "
 msgstr ""
 
 #. module: web
+#. odoo-python
+#: code:addons/web/controllers/domain.py:0
+#, python-format
+msgid "Invalid model: %s"
+msgstr ""
+
+#. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_invite_users.js:0
 #, python-format
@@ -2798,6 +2808,11 @@ msgid "Inviting..."
 msgstr ""
 
 #. module: web
+#: model:ir.model.fields,field_description:web.field_base_document_layout__is_company_details_empty
+msgid "Is Company Details Empty"
+msgstr ""
+
+#. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/debug/profiling/profiling_qweb.xml:0
 #, python-format
@@ -2814,7 +2829,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/views/kanban/kanban_view.js:0
 #, python-format
 msgid "Kanban"
-msgstr ""
+msgstr "Kanban"
 
 #. module: web
 #. odoo-javascript
@@ -2953,7 +2968,7 @@ msgstr ""
 #: code:addons/web/static/src/webclient/loading_indicator/loading_indicator.xml:0
 #, python-format
 msgid "Loading"
-msgstr ""
+msgstr "Učitavanje"
 
 #. module: web
 #. odoo-javascript
@@ -2975,7 +2990,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/relational_utils.js:0
 #, python-format
 msgid "Loading..."
-msgstr ""
+msgstr "Učitavanje..."
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login
@@ -3088,7 +3103,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "Match"
-msgstr ""
+msgstr "Upari"
 
 #. module: web
 #. odoo-javascript
@@ -3200,7 +3215,7 @@ msgstr ""
 #. module: web
 #: model:ir.model,name:web.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modeli"
 
 #. module: web
 #. odoo-javascript
@@ -3225,7 +3240,7 @@ msgstr "Pon"
 #: code:addons/web/static/src/views/fields/monetary/monetary_field.js:0
 #, python-format
 msgid "Monetary"
-msgstr ""
+msgstr "Monetarno"
 
 #. module: web
 #. odoo-javascript
@@ -3244,7 +3259,7 @@ msgstr "Mesec"
 #: code:addons/web/static/src/views/form/button_box/button_box.xml:0
 #, python-format
 msgid "More"
-msgstr ""
+msgstr "Više"
 
 #. module: web
 #. odoo-javascript
@@ -3280,6 +3295,11 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/views/basic/basic_model.js:0
 #: code:addons/web/static/src/views/form/form_controller.js:0
+#: code:addons/web/static/src/views/form/form_controller.xml:0
+#: code:addons/web/static/src/views/form/form_controller.xml:0
+#: code:addons/web/static/src/views/kanban/kanban_controller.xml:0
+#: code:addons/web/static/src/views/list/list_controller.xml:0
+#: code:addons/web/static/src/views/view_dialogs/select_create_dialog.xml:0
 #, python-format
 msgid "New"
 msgstr "Novo"
@@ -3614,7 +3634,7 @@ msgstr ""
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, python-format
 msgid "Odoo Warning"
-msgstr ""
+msgstr "Odoo upozorenje"
 
 #. module: web
 #. odoo-javascript
@@ -3728,6 +3748,13 @@ msgstr ""
 #: code:addons/web/static/src/webclient/debug_items.js:0
 #, python-format
 msgid "Open View"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/debug/debug_menu.xml:0
+#, python-format
+msgid "Open developer tools"
 msgstr ""
 
 #. module: web
@@ -3943,6 +3970,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/fields/relational_fields.js:0
 #: code:addons/web/static/src/legacy/js/views/list/list_renderer.js:0
+#: code:addons/web/static/src/views/list/list_renderer.js:0
 #, python-format
 msgid "Please click on the \"save\" button first"
 msgstr ""
@@ -3994,7 +4022,6 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/xml/base.xml:0
-#: code:addons/web/static/src/views/form/form_controller.xml:0
 #, python-format
 msgid "Please update translations of :"
 msgstr ""
@@ -4011,7 +4038,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid ""
 "Please use the following communication for your payment : <b><span>\n"
-"                           INV/2020/07/0003</span></b>"
+"                           INV/2023/00003</span></b>"
 msgstr ""
 
 #. module: web
@@ -4077,7 +4104,7 @@ msgstr "Prethodno"
 #: code:addons/web/static/src/search/utils/dates.js:0
 #, python-format
 msgid "Previous Period"
-msgstr ""
+msgstr "Prethodni period"
 
 #. module: web
 #. odoo-javascript
@@ -4214,7 +4241,7 @@ msgstr ""
 #. module: web
 #: model:ir.model.fields.selection,name:web.selection__ir_actions_act_window_view__view_mode__qweb
 msgid "QWeb"
-msgstr ""
+msgstr "QWeb"
 
 #. module: web
 #. odoo-javascript
@@ -4324,7 +4351,7 @@ msgstr "Referenca"
 #: code:addons/web/static/src/views/fields/domain/domain_field.xml:0
 #, python-format
 msgid "Refresh"
-msgstr ""
+msgstr "Osveži"
 
 #. module: web
 #. odoo-javascript
@@ -4380,7 +4407,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #: code:addons/web/static/src/search/search_bar/search_bar.xml:0
 #: code:addons/web/static/src/search/search_bar/search_bar.xml:0
-#: code:addons/web/static/src/views/fields/relational_utils.xml:0
+#: code:addons/web/static/src/views/fields/relational_utils.js:0
 #: code:addons/web/static/src/views/fields/relational_utils.xml:0
 #: code:addons/web/static/src/views/form/form_controller.xml:0
 #, python-format
@@ -4688,7 +4715,7 @@ msgstr ""
 #: code:addons/web/static/src/webclient/settings_form_view/settings_form_view.xml:0
 #, python-format
 msgid "Search..."
-msgstr ""
+msgstr "Pretraga..."
 
 #. module: web
 #. odoo-javascript
@@ -5300,7 +5327,7 @@ msgstr "Čet"
 #: code:addons/web/static/src/views/fields/float_time/float_time_field.js:0
 #, python-format
 msgid "Time"
-msgstr ""
+msgstr "Vreme"
 
 #. module: web
 #. odoo-javascript
@@ -5318,7 +5345,7 @@ msgstr ""
 #: code:addons/web/static/src/views/calendar/calendar_controller.xml:0
 #: code:addons/web/static/src/views/calendar/calendar_controller.xml:0
 #: code:addons/web/static/src/views/calendar/calendar_controller.xml:0
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
+#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.js:0
 #, python-format
 msgid "Today"
 msgstr "Danas"
@@ -5342,10 +5369,10 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/fields/basic_fields.js:0
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
+#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.js:0
 #, python-format
 msgid "Tomorrow"
-msgstr ""
+msgstr "Sutra"
 
 #. module: web
 #. odoo-python
@@ -5481,15 +5508,15 @@ msgid "Uncaught Promise"
 msgstr ""
 
 #. module: web
-#. odoo-javascript
 #. odoo-python
+#. odoo-javascript
 #: code:addons/web/controllers/export.py:0
 #: code:addons/web/static/src/views/calendar/calendar_model.js:0
 #: code:addons/web/static/src/views/graph/graph_model.js:0
 #: code:addons/web/static/src/views/graph/graph_model.js:0
 #, python-format
 msgid "Undefined"
-msgstr ""
+msgstr "Nedefinisano"
 
 #. module: web
 #. odoo-javascript
@@ -5499,7 +5526,7 @@ msgstr ""
 #: code:addons/web/static/src/views/kanban/kanban_renderer.xml:0
 #, python-format
 msgid "Unfold"
-msgstr ""
+msgstr "Razviti"
 
 #. module: web
 #. odoo-javascript
@@ -5553,7 +5580,7 @@ msgstr ""
 #: code:addons/web/static/src/views/pivot/pivot_view.js:0
 #, python-format
 msgid "Untitled"
-msgstr ""
+msgstr "Bez naslova"
 
 #. module: web
 #. odoo-javascript
@@ -5611,7 +5638,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/many2many_binary/many2many_binary_field.xml:0
 #, python-format
 msgid "Uploaded"
-msgstr ""
+msgstr "Otpremljeno"
 
 #. module: web
 #. odoo-javascript
@@ -5619,7 +5646,7 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/many2many_binary/many2many_binary_field.xml:0
 #, python-format
 msgid "Uploading"
-msgstr ""
+msgstr "Otpremanje"
 
 #. module: web
 #. odoo-javascript
@@ -5819,7 +5846,7 @@ msgstr "Sreda"
 #: code:addons/web/static/src/views/calendar/calendar_controller.js:0
 #, python-format
 msgid "Week"
-msgstr ""
+msgstr "Sedmica"
 
 #. module: web
 #. odoo-javascript
@@ -5902,7 +5929,7 @@ msgstr "Da"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/fields/basic_fields.js:0
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
+#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.js:0
 #, python-format
 msgid "Yesterday"
 msgstr "Juče"
@@ -6063,7 +6090,7 @@ msgstr ""
 #: code:addons/web/static/src/core/domain_selector/domain_selector_branch_operator.xml:0
 #, python-format
 msgid "all"
-msgstr ""
+msgstr "sve"
 
 #. module: web
 #. odoo-javascript
@@ -6080,7 +6107,7 @@ msgstr ""
 #: code:addons/web/static/src/core/domain_selector/domain_selector_branch_operator.xml:0
 #, python-format
 msgid "any"
-msgstr ""
+msgstr "bilo koji"
 
 #. module: web
 #. odoo-javascript
@@ -6093,7 +6120,6 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/xml/base.xml:0
-#: code:addons/web/static/src/views/fields/many2one/many2one_field.xml:0
 #, python-format
 msgid "as a new"
 msgstr ""
@@ -6133,6 +6159,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/control_panel/search_utils.js:0
 #: code:addons/web/static/src/legacy/js/widgets/domain_selector.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #, python-format
 msgid "contains"
 msgstr ""
@@ -6142,21 +6169,7 @@ msgstr ""
 #: code:addons/web/static/src/search/search_bar/search_bar.js:0
 #, python-format
 msgid "date"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
-#, python-format
-msgid "days"
-msgstr "dana"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/views/fields/remaining_days/remaining_days_field.xml:0
-#, python-format
-msgid "days ago"
-msgstr ""
+msgstr "datum"
 
 #. module: web
 #. odoo-javascript
@@ -6169,6 +6182,7 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/legacy/js/control_panel/search_utils.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #, python-format
 msgid "doesn't contain"
@@ -6222,14 +6236,14 @@ msgstr ""
 #: code:addons/web/static/src/views/calendar/calendar_common/calendar_common_popover.js:0
 #, python-format
 msgid "hour"
-msgstr ""
+msgstr "sat"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/views/calendar/calendar_common/calendar_common_popover.js:0
 #, python-format
 msgid "hours"
-msgstr ""
+msgstr "sati"
 
 #. module: web
 #. odoo-javascript
@@ -6237,7 +6251,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/widgets/domain_selector.js:0
 #, python-format
 msgid "in"
-msgstr ""
+msgstr "in"
 
 #. module: web
 #. odoo-javascript
@@ -6329,6 +6343,7 @@ msgstr ""
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #, python-format
 msgid "is equal to"
 msgstr ""
@@ -6361,6 +6376,7 @@ msgstr ""
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #, python-format
 msgid "is not equal to"
 msgstr ""
@@ -6380,6 +6396,8 @@ msgstr ""
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #, python-format
 msgid "is not set"
 msgstr ""
@@ -6394,6 +6412,8 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/control_panel/search_utils.js:0
 #: code:addons/web/static/src/legacy/js/control_panel/search_utils.js:0
 #: code:addons/web/static/src/legacy/js/widgets/domain_selector.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
+#: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
 #: code:addons/web/static/src/search/filter_menu/custom_filter_item.js:0
@@ -6462,21 +6482,21 @@ msgstr ""
 #: code:addons/web/static/src/views/calendar/calendar_common/calendar_common_popover.js:0
 #, python-format
 msgid "minute"
-msgstr ""
+msgstr "minut"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/views/calendar/calendar_common/calendar_common_popover.js:0
 #, python-format
 msgid "minutes"
-msgstr ""
+msgstr "minuta"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_invite_users.xml:0
 #, python-format
 msgid "more"
-msgstr ""
+msgstr "više"
 
 #. module: web
 #. odoo-javascript
@@ -6485,6 +6505,13 @@ msgstr ""
 #: code:addons/web/static/src/core/debug/profiling/profiling_qweb.xml:0
 #, python-format
 msgid "ms"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/commands/command_palette.xml:0
+#, python-format
+msgid "new tab"
 msgstr ""
 
 #. module: web
@@ -6650,20 +6677,6 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/widgets/domain_selector.js:0
 #, python-format
 msgid "set (true)"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/commands/command_palette.xml:0
-#, python-format
-msgid "to open in new tab"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/commands/command_palette.xml:0
-#, python-format
-msgid "to open,"
 msgstr ""
 
 #. module: web

@@ -10,6 +10,7 @@
     import session from 'web.session';
     import { Quiz } from '@website_slides/js/slides_course_quiz';
     import { SlideCoursePage } from '@website_slides/js/slides_course_page';
+    import { unhideConditionalElements } from '@website/js/content/inject_dom';
     import Dialog from 'web.Dialog';
     import '@website_slides/js/slides_course_join';
 
@@ -681,12 +682,13 @@
                 $content.html(QWeb.render('website.slides.fullscreen.video.google_drive', {widget: this}));
             } else if (slide.category === 'article'){
                 var $wpContainer = $('<div>').addClass('o_wslide_fs_article_content bg-white block w-100 overflow-auto');
-                $(slide.htmlContent).appendTo($wpContainer);
+                $wpContainer.html(slide.htmlContent);
                 $content.append($wpContainer);
                 this.trigger_up('widgets_start_request', {
                     $target: $content,
                 });
             }
+            unhideConditionalElements();
             return Promise.resolve();
         },
         //--------------------------------------------------------------------------

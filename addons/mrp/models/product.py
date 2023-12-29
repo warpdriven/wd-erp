@@ -94,7 +94,7 @@ class ProductTemplate(models.Model):
             return templates.mapped('product_variant_id').action_compute_bom_days()
 
     def action_archive(self):
-        filtered_products = self.env['mrp.bom.line'].search([('product_id', 'in', self.product_variant_ids.ids)]).product_id.mapped('display_name')
+        filtered_products = self.env['mrp.bom.line'].search([('product_id', 'in', self.product_variant_ids.ids), ('bom_id.active', '=', True)]).product_id.mapped('display_name')
         res = super().action_archive()
         if filtered_products:
             return {
@@ -288,7 +288,7 @@ class ProductProduct(models.Model):
         # bom specific to this variant or global to template or that contains the product as a byproduct
         action['context'] = {
             'default_product_tmpl_id': template_ids[0],
-            'default_product_id': self.ids[0],
+            'default_product_id': self.env.user.has_group('product.group_product_variant') and self.ids[0] or False,
         }
         action['domain'] = ['|', '|', ('byproduct_ids.product_id', 'in', self.ids), ('product_id', 'in', self.ids), '&', ('product_id', '=', False), ('product_tmpl_id', 'in', template_ids)]
         return action
@@ -360,7 +360,7 @@ class ProductProduct(models.Model):
         return list(set(product_ids))
 
     def action_archive(self):
-        filtered_products = self.env['mrp.bom.line'].search([('product_id', 'in', self.ids)]).product_id.mapped('display_name')
+        filtered_products = self.env['mrp.bom.line'].search([('product_id', 'in', self.ids), ('bom_id.active', '=', True)]).product_id.mapped('display_name')
         res = super().action_archive()
         if filtered_products:
             return {

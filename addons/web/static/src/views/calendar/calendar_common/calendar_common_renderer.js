@@ -84,7 +84,7 @@ export class CalendarCommonRenderer extends Component {
             eventResize: this.onEventResize,
             eventResizeStart: this.onEventResizeStart,
             events: (_, successCb) => successCb(this.mapRecordsToEvents()),
-            firstDay: this.props.model.firstDayOfWeek % 7,
+            firstDay: this.props.model.firstDayOfWeek,
             header: false,
             height: "parent",
             locale: luxon.Settings.defaultLocale,
@@ -153,10 +153,11 @@ export class CalendarCommonRenderer extends Component {
         };
     }
     openPopover(target, record) {
+        const color = getColor(record.colorIndex);
         this.popover.open(
             target,
             this.getPopoverProps(record),
-            `o_cw_popover o_calendar_color_${record.colorIndex}`
+            `o_cw_popover o_calendar_color_${typeof(color) === "number" ? color : 0}`
         );
     }
     updateSize() {

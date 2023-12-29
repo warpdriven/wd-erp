@@ -3075,7 +3075,8 @@ const SnippetOptionWidget = Widget.extend({
      */
     isTopFirstOption: false,
     /**
-     * Forces the target to not be possible to remove.
+     * Forces the target to not be possible to remove. It will also hide the
+     * clone button.
      *
      * @type {boolean}
      */
@@ -3891,8 +3892,13 @@ const SnippetOptionWidget = Widget.extend({
             if (this.$target[0].classList.contains('o_grid_item') && !isMobileView) {
                 return false;
             }
-            const firstOrLastChild = moveUpOrLeft ? ':first-child' : ':last-child';
-            return !this.$target.is(firstOrLastChild);
+            // Consider only visible elements.
+            const direction = moveUpOrLeft ? "previousElementSibling" : "nextElementSibling";
+            let siblingEl = this.$target[0][direction];
+            while (siblingEl && window.getComputedStyle(siblingEl).display === "none") {
+                siblingEl = siblingEl[direction];
+            }
+            return !!siblingEl;
         }
         return true;
     },
@@ -4337,7 +4343,6 @@ registry.sizing = SnippetOptionWidget.extend({
         let resizeValues = this._getSize();
         this.$handles.on('mousedown', function (ev) {
             ev.preventDefault();
-            self.options.wysiwyg.odooEditor.automaticStepUnactive('resizing');
 
             // If the handle has the class 'readonly', don't allow to resize.
             // (For the grid handles when we are in mobile view).
@@ -4437,6 +4442,8 @@ registry.sizing = SnippetOptionWidget.extend({
                 directions.push(props);
             }
 
+            self.options.wysiwyg.odooEditor.automaticStepUnactive('resizing');
+
             const cursor = $handle.css('cursor') + '-important';
             const $body = $(this.ownerDocument.body);
             $body.addClass(cursor);
@@ -4510,6 +4517,8 @@ registry.sizing = SnippetOptionWidget.extend({
                     $handlers.removeClass('o_active').dequeue();
                 });
 
+                self.options.wysiwyg.odooEditor.automaticStepActive('resizing');
+
                 if (directions.every(dir => dir.begin === dir.current)) {
                     return;
                 }
@@ -4517,8 +4526,6 @@ registry.sizing = SnippetOptionWidget.extend({
                 setTimeout(function () {
                     self.options.wysiwyg.odooEditor.historyStep();
                 }, 0);
-
-                self.options.wysiwyg.odooEditor.automaticStepActive('resizing');
             };
             $body.on('mousemove', bodyMouseMove);
             $body.on('mouseup', bodyMouseUp);
@@ -5362,18 +5369,30 @@ registry.SnippetMove = SnippetOptionWidget.extend({
         const isNavItem = this.$target[0].classList.contains('nav-item');
         const $tabPane = isNavItem ? $(this.$target.find('.nav-link')[0].hash) : null;
         switch (widgetValue) {
-            case 'prev':
-                this.$target.prev().before(this.$target);
+            case 'prev': {
+                // Consider only visible elements.
+                let prevEl = this.$target[0].previousElementSibling;
+                while (prevEl && window.getComputedStyle(prevEl).display === "none") {
+                    prevEl = prevEl.previousElementSibling;
+                }
+                prevEl && prevEl.insertAdjacentElement("beforebegin", this.$target[0]);
                 if (isNavItem) {
                     $tabPane.prev().before($tabPane);
                 }
                 break;
-            case 'next':
-                this.$target.next().after(this.$target);
+            }
+            case 'next': {
+                // Consider only visible elements.
+                let nextEl = this.$target[0].nextElementSibling;
+                while (nextEl && window.getComputedStyle(nextEl).display === "none") {
+                    nextEl = nextEl.nextElementSibling;
+                }
+                nextEl && nextEl.insertAdjacentElement("afterend", this.$target[0]);
                 if (isNavItem) {
                     $tabPane.next().after($tabPane);
                 }
                 break;
+            }
         }
         if (!this.$target.is(this.data.noScroll)
                 && (params.name === 'move_up_opt' || params.name === 'move_down_opt')) {
@@ -5434,7 +5453,9 @@ registry.ReplaceMedia = SnippetOptionWidget.extend({
      * @see this.selectClass for parameters
      */
     async replaceMedia() {
-        this.options.wysiwyg.openMediaDialog({ node: this.$target[0] });
+        // TODO for now, this simulates a double click on the media,
+        // to be refactored when the new editor is merged
+        this.$target.dblclick();
     },
     /**
      * Makes the image a clickable link by wrapping it in an <a>.
@@ -5456,7 +5477,9 @@ registry.ReplaceMedia = SnippetOptionWidget.extend({
                 this.$target[0].src = src;
             }
         } else {
-            parentEl.replaceWith(this.$target[0]);
+            const fragment = document.createDocumentFragment();
+            fragment.append(...parentEl.childNodes);
+            parentEl.replaceWith(fragment);
         }
     },
     /**
@@ -6403,8 +6426,10 @@ registry.ImageTools = ImageHandlerOption.extend({
     async _loadImageInfo() {
         await this._super(...arguments);
         const img = this._getImg();
-        if (img.dataset.shape && img.dataset.mimetype !== 'image/svg+xml') {
-            img.dataset.originalMimetype = img.dataset.mimetype;
+        if (img.dataset.shape) {
+            if (img.dataset.mimetype !== "image/svg+xml") {
+                img.dataset.originalMimetype = img.dataset.mimetype;
+            }
             if (!this._isImageSupportedForProcessing(img)) {
                 delete img.dataset.shape;
                 delete img.dataset.shapeColors;
@@ -6412,9 +6437,12 @@ registry.ImageTools = ImageHandlerOption.extend({
                 delete img.dataset.originalMimetype;
                 return;
             }
-            // Image data-mimetype should be changed to SVG since loadImageInfo()
-            // will set the original attachment mimetype on it.
-            img.dataset.mimetype = 'image/svg+xml';
+            if (img.dataset.mimetype !== "image/svg+xml") {
+                // Image data-mimetype should be changed to SVG since
+                // loadImageInfo() will set the original attachment mimetype on
+                // it.
+                img.dataset.mimetype = "image/svg+xml";
+            }
         }
     },
     /**
@@ -6975,6 +7003,26 @@ registry.BackgroundShape = SnippetOptionWidget.extend({
                 .prepend($(`<we-colorpicker data-color="true" data-color-name="${colorName}"></we-colorpicker>`)[0]);
         });
 
+        // Inventory shape URLs per class.
+        const style = window.getComputedStyle(this.$target[0]);
+        const palette = [1, 2, 3, 4, 5].map(n => style.getPropertyValue(`--o-cc${n}-bg`)).join();
+        if (palette !== this._lastShapePalette) {
+            this._lastShapePalette = palette;
+            this._shapeBackgroundImagePerClass = {};
+            for (const styleSheet of this.$target[0].ownerDocument.styleSheets) {
+                if (styleSheet.href && new URL(styleSheet.href).host !== location.host) {
+                    // In some browsers, if a stylesheet is loaded from a different domain
+                    // accessing cssRules results in a SecurityError.
+                    continue;
+                }
+                for (const rule of [...styleSheet.cssRules]) {
+                    if (rule.selectorText && rule.selectorText.startsWith(".o_we_shape.")) {
+                        this._shapeBackgroundImagePerClass[rule.selectorText] = rule.style.backgroundImage;
+                    }
+                }
+            }
+        }
+
         uiFragment.querySelectorAll('we-select-pager we-button[data-shape]').forEach(btn => {
             const btnContent = document.createElement('div');
             btnContent.classList.add('o_we_shape_btn_content', 'position-relative', 'border-dark');
@@ -6988,7 +7036,11 @@ registry.BackgroundShape = SnippetOptionWidget.extend({
 
             const {shape} = btn.dataset;
             const shapeEl = btnContent.querySelector('.o_we_shape');
-            shapeEl.classList.add(`o_${shape.replace(/\//g, '_')}`);
+            const shapeClassName = `o_${shape.replace(/\//g, '_')}`;
+            shapeEl.classList.add(shapeClassName);
+            // Match current palette.
+            const shapeBackgroundImage = this._shapeBackgroundImagePerClass[`.o_we_shape.${shapeClassName}`];
+            shapeEl.style.setProperty("background-image", shapeBackgroundImage);
             btn.append(btnContent);
         });
         return uiFragment;

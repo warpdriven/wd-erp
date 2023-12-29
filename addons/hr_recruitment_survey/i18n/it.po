@@ -3,8 +3,8 @@
 # 	* hr_recruitment_survey
 # 
 # Translators:
-# Friederike Fasterling-Nesselbosch, 2022
 # Martin Trigaux, 2022
+# Marianna Ciofani, 2023
 # Sergio Zanchetta <primes2h@gmail.com>, 2023
 # 
 msgid ""
@@ -71,7 +71,7 @@ msgstr "Istruzione"
 #. module: hr_recruitment_survey
 #: model:survey.question,title:hr_recruitment_survey.survey_recruitment_form_p1_q2
 msgid "From which university did or will you graduate ?"
-msgstr "In quale università ti sei o ti stai per laureare ?"
+msgstr "In quale università si è o si sta per laureare ?"
 
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_row2
@@ -81,8 +81,7 @@ msgstr "Andare d'accordo con i colleghi"
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_row8
 msgid "Getting perks such as free parking, gym passes"
-msgstr ""
-"Ottenere vantaggi come il parcheggio gratuito, tessere per la palestra"
+msgstr "Ottenere gratifiche come parcheggi gratuiti, abbonamenti palestra"
 
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_row1
@@ -125,7 +124,7 @@ msgstr "Sondaggio colloquio"
 #. module: hr_recruitment_survey
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_survey.view_hr_job_kanban_inherit
 msgid "Interviews"
-msgstr ""
+msgstr "Colloqui"
 
 #. module: hr_recruitment_survey
 #: model:ir.model,name:hr_recruitment_survey.model_hr_job
@@ -135,12 +134,12 @@ msgstr "Posizione lavorativa"
 #. module: hr_recruitment_survey
 #: model:survey.question,title:hr_recruitment_survey.survey_recruitment_form_p1_q6
 msgid "Knowledge"
-msgstr "Knowledge"
+msgstr "Preparazione"
 
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_row6
 msgid "Management quality"
-msgstr "Qualità Management"
+msgstr "Qualità della dirigenza"
 
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_col1
@@ -163,6 +162,8 @@ msgid ""
 "Please answer those questions to help recruitment officers to preprocess "
 "your application."
 msgstr ""
+"Rispondi alle domande per aiutare gli addetti alla selezione del personale a"
+" elaborare preventivamente la candidatura."
 
 #. module: hr_recruitment_survey
 #: model_terms:survey.question,description:hr_recruitment_survey.survey_recruitment_form_p1
@@ -170,6 +171,8 @@ msgid ""
 "Please fill information about you: who you are, what are your education, experience, and activities.\n"
 "    It will help us managing your application."
 msgstr ""
+"Inserisci le tue informazioni personali: chi sei, cosa hai studiato, esperienza e attività.\n"
+"    Questo ci aiuta a gestire la tua candidatura."
 
 #. module: hr_recruitment_survey
 #: model_terms:survey.question,description:hr_recruitment_survey.survey_recruitment_form_p1_q4
@@ -177,17 +180,19 @@ msgstr ""
 msgid ""
 "Please summarize your education history: schools, location, diplomas, ..."
 msgstr ""
+"Raccontaci il tuo percorso di studi: dove hai studiato, in quali istituti, "
+"titoli conseguiti..."
 
 #. module: hr_recruitment_survey
 #: model_terms:survey.question,description:hr_recruitment_survey.survey_recruitment_form_p1_q7
 msgid ""
 "Please tell us a bit more about yourself: what are your main activities, ..."
-msgstr ""
+msgstr "Raccontaci di più sul tuo conto: attività principali..."
 
 #. module: hr_recruitment_survey
 #: model:survey.survey,title:hr_recruitment_survey.survey_recruitment_form
 msgid "Recruitment Form"
-msgstr "Modulo di assunzione"
+msgstr "Modulo di selezione"
 
 #. module: hr_recruitment_survey
 #: model:ir.model.fields,field_description:hr_recruitment_survey.field_hr_applicant__response_id
@@ -202,7 +207,7 @@ msgstr "INVIA COLLOQUIO"
 #. module: hr_recruitment_survey
 #: model_terms:ir.ui.view,arch_db:hr_recruitment_survey.hr_applicant_view_form_inherit
 msgid "See interview report"
-msgstr "Vedere il rapporto dell'intervista"
+msgstr "Vedi resoconto colloquio"
 
 #. module: hr_recruitment_survey
 #: model:ir.model.fields,field_description:hr_recruitment_survey.field_hr_applicant__response_state
@@ -254,22 +259,22 @@ msgstr "Molto importante"
 #. module: hr_recruitment_survey
 #: model:survey.question,title:hr_recruitment_survey.survey_recruitment_form_p1_q3
 msgid "Were you referred by an employee?"
-msgstr "Sei stato segnalato da un dipendente ?"
+msgstr "È stato segnalato da un dipendente ?"
 
 #. module: hr_recruitment_survey
 #: model_terms:survey.question,description:hr_recruitment_survey.survey_recruitment_form_p1_q6
 msgid "What are your main knowledge regarding the job you are applying to ?"
-msgstr ""
+msgstr "Cosa sai riguardo la posizione per la quale ti sei candidato/a?"
 
 #. module: hr_recruitment_survey
 #: model:survey.question,title:hr_recruitment_survey.survey_recruitment_form_p1_q8
 msgid "What is important for you ?"
-msgstr "Cos'è importante per te ?"
+msgstr "Cos'è importante per Lei ?"
 
 #. module: hr_recruitment_survey
 #: model:survey.question,title:hr_recruitment_survey.survey_recruitment_form_p1_q1
 msgid "Which country are you from ?"
-msgstr "Da che nazione provieni ?"
+msgstr "Da quale nazione proviene ?"
 
 #. module: hr_recruitment_survey
 #: model:survey.question.answer,value:hr_recruitment_survey.survey_recruitment_form_p1_q8_row4

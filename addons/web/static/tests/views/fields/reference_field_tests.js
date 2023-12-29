@@ -259,6 +259,28 @@ QUnit.module("Fields", (hooks) => {
         );
     });
 
+    QUnit.test("ReferenceField respects no_quick_create", async function (assert) {
+        await makeView({
+            type: "form",
+            resModel: "partner",
+            serverData,
+            arch: `<form><field name="reference" options="{'no_quick_create': 1}" /></form>`,
+        });
+
+        await editSelect(target, "select", "partner");
+        await click(target, ".o_field_widget[name='reference'] input");
+        await editInput(target, ".o_field_widget[name='reference'] input", "new partner");
+        assert.containsOnce(
+            target,
+            ".ui-autocomplete .o_m2o_dropdown_option",
+            "Dropdown should be opened and have only one item"
+        );
+        assert.hasClass(
+            target.querySelector(".ui-autocomplete .o_m2o_dropdown_option"),
+            "o_m2o_dropdown_option_create_edit"
+        );
+    });
+
     QUnit.test("ReferenceField in modal readonly mode", async function (assert) {
         serverData.models.partner.records[0].p = [2];
         serverData.models.partner.records[1].trululu = 1;
@@ -961,6 +983,52 @@ QUnit.module("Fields", (hooks) => {
                 target.querySelector(".o_list_table [name='reference']").textContent,
                 "xpad"
             );
+        }
+    );
+
+    QUnit.test(
+        "Change model field of a ReferenceField then select an invalid value (tree list in form view)",
+        async function (assert) {
+            serverData.models.turtle.records[0].partner_ids = [1];
+            serverData.models.partner.records[0].reference = "product,41";
+            serverData.models.partner.records[0].model_id = 20;
+
+            await makeView({
+                type: "form",
+                resModel: "turtle",
+                resId: 1,
+                serverData,
+                arch: `
+                    <form>
+                        <field name="partner_ids">
+                            <tree editable="bottom">
+                                <field name="name" />
+                                <field name="model_id"/>
+                                <field name="reference" required="true" options="{'model_field': 'model_id'}" class="reference_field" />
+                            </tree>
+                        </field>
+                   </form>`,
+            });
+            assert.strictEqual(target.querySelector(".reference_field").textContent, "xpad");
+            assert.strictEqual(target.querySelector(".o_list_many2one").textContent, "Product");
+
+            await click(target, ".o_list_table td.o_list_many2one");
+            await click(target, ".o_list_table .o_list_many2one input");
+            //Select the "Partner" option, different from original "Product"
+            const dropdownItems = [...target.querySelectorAll(".o_list_table .o_list_many2one .o_input_dropdown .dropdown-item")];
+            await click(dropdownItems.filter(item => item.text === "Partner")[0]);
+            assert.strictEqual(target.querySelector(".reference_field input").value, "");
+            assert.strictEqual(target.querySelector(".o_list_many2one input").value, "Partner");
+            //Void the associated, required, "reference" field and make sure the form marks the field as required
+            await click(target, ".o_list_table .reference_field input");
+            const textInput = target.querySelector(".o_list_table .reference_field input");
+            textInput.setSelectionRange(0, textInput.value.length);
+            await triggerEvent(target, ".o_list_table .reference_field input", "keydown", {
+                key: "Backspace",
+            });
+            await click(target, ".o_form_view_container");
+
+            assert.containsOnce(target, ".o_list_table .reference_field.o_field_invalid");
         }
     );
 
